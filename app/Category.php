@@ -10,7 +10,7 @@ class Category extends Model {
 	 */
 	protected $table = 'categorys';
 
-		public function Category(){
+		public function grupas(){
 
 		return $this->belongsTo('App/Grupas');
 	}

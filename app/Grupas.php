@@ -10,13 +10,10 @@ class Grupas extends Model {
 	 */
 	protected $table = 'grupas';
 
-		protected $fillable = ['Group_name', 'Group_desc'];
+	protected $fillable = ['Group_name', 'Group_desc'];
 
 
-		public function images_group(){
 
-		return $this->belongsTo('images_group','group_image');
-	}
 }
 
 

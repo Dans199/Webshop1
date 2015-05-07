@@ -65,9 +65,15 @@ Route::group(['middleware' => 'auth'], function()
 
 });
 
-
 	Route::group(array('before' => 'admin'), function()
 	{
 		Route::get('/admin', array('uses' => 'Admin\HelloController@showPanel', 'as' => 'Admin'));
+		Route::get('/admin/groups', array('uses' => 'Admin\GrupasController@showGroups', 'as' => 'Admin-grupas'));
+		Route::get('/admin/groups/add', array('uses' => 'Admin\GrupasController@AddGroup', 'as' => 'Admin-grupas-add'));
+		Route::post('/admin/groups/add', array('uses' => 'Admin\GrupasController@postGroup'));
+		Route::get('/admin/groups/delete/{id}', array('uses' => 'Admin\GrupasController@DeleteGroup', 'as' => 'Admin-grupas-delete'));
+		Route::get('/admin/groups/edit/{id}', array('uses' => 'Admin\GrupasController@getEdit', 'as' => 'Admin-grupas-edit'));
+		Route::post('/admin/groups/edit/{id}', array('uses' => 'Admin\GrupasController@postEdit'));
+
 
 	});
