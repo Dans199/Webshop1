@@ -1,17 +1,20 @@
 <?php namespace App\Http\Controllers\Admin;
 
+use Illuminate\Pagination\Paginator;
+
 use App\Http\Controllers\Controller;
-use App\User as user;
-use App\Grupas as Grupa;
+use App\User;
+use App\Grupas as Grupa ;
+use App\Category ;
+use App\Products ;
 
 class GrupasController extends Controller{
 
   public function showGroups()
    {
 
-   	$groups = Grupa::latest()->take(25)->get();
-
-   	return view('Admin/Group.Grupas')->with('groups',$groups);
+   	$groups = Grupa::latest()->paginate(5);
+   	return view('Admin/Group.Grupas')->with('groups', $groups);
 
   	}
 
@@ -46,9 +49,12 @@ class GrupasController extends Controller{
 
 	public function DeleteGroup($id)
 
-   	{
+   	{			
+   		$group = Grupa::find($id);
 
-   		 $group = Grupa::find($id);
+	   $products = Grupa::find($id)->category()->products->delete();
+	   $category= Grupa::find($id)->category->delete();
+
 
 		if ($group->delete())
 		{

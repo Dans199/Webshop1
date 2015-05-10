@@ -12,9 +12,9 @@ class Products extends Model {
 	 */
 	protected $table = 'products';
 
-		public function Products(){
+		public function category(){
 
-		return $this->belongsTo('categorys');
+		return $this->belongsTo('App/Category');
 	}
 
 }

@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth'], function()
 	Route::group(array('before' => 'admin'), function()
 	{
 		Route::get('/admin', array('uses' => 'Admin\HelloController@showPanel', 'as' => 'Admin'));
+
 		Route::get('/admin/groups', array('uses' => 'Admin\GrupasController@showGroups', 'as' => 'Admin-grupas'));
 		Route::get('/admin/groups/add', array('uses' => 'Admin\GrupasController@AddGroup', 'as' => 'Admin-grupas-add'));
 		Route::post('/admin/groups/add', array('uses' => 'Admin\GrupasController@postGroup'));
@@ -75,5 +76,13 @@ Route::group(['middleware' => 'auth'], function()
 		Route::get('/admin/groups/edit/{id}', array('uses' => 'Admin\GrupasController@getEdit', 'as' => 'Admin-grupas-edit'));
 		Route::post('/admin/groups/edit/{id}', array('uses' => 'Admin\GrupasController@postEdit'));
 
+		Route::get('/admin/Categories', array('uses' => 'Admin\CategoryController@showCategory', 'as' => 'Admin-category'));
+		Route::get('/admin/Categories/add', array('uses' => 'Admin\CategoryController@AddCategory', 'as' => 'Admin-category-add'));
+		Route::post('/admin/Categories/add', array('uses' => 'Admin\CategoryController@postCategory'));
+		Route::get('/admin/Categories/edit/{id}', array('uses' => 'Admin\CategoryController@EditCategory', 'as' => 'Admin-category-edit'));
+		Route::post('/admin/Categories/edit/{id}', array('uses' => 'Admin\CategoryController@postEdit'));
+
+		Route::get('/admin/Products', array('uses' => 'Admin\ProductsController@showProducts', 'as' => 'Admin-Products'));
+		Route::get('/admin/Products/add', array('uses' => 'Admin\ProductsController@AddProducts', 'as' => 'Admin-Products-add'));
 
 	});

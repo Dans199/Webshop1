@@ -12,7 +12,10 @@ class Grupas extends Model {
 
 	protected $fillable = ['Group_name', 'Group_desc'];
 
+		public function category(){
 
+		return $this->hasMany('App\Category');
+	}
 
 }
 

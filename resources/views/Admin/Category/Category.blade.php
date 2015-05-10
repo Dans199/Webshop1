@@ -12,15 +12,16 @@
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif
 
-    			<h4 >Grupas Datubāzē!</h4>
-    			Pievienot Jaunu grupu: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-grupas-add') }}"></a>
+    			<h4 >Kategorijas Datubāzē!</h4>
+    			Pievienot Jaunu Kategoriju: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-category-add') }}"></a>
 
 	<table class="table table-striped table-bordered">
     <thead>
         <tr>
         	<td>ID</td>
-            <td>Grupas Nosaukums</td>
+            <td>Kategorijas Nosaukums</td>
             <td>Apraksts</td>
+            <td>Grupas ID</td>
             <td>Izveidots</td>
             <td>Izmainīts</td>
             <td>Iespējas</td>
@@ -28,23 +29,23 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($groups as $key => $value)
+    @foreach($Categorys as $key => $value)
         <tr>
             <td>{{ $value->id }}</td>
-            <td>{{ $value->Group_name }}</td>
-            <td>{{ $value->Group_desc}}</td>
+            <td>{{ $value->name}}</td>
+            <td>{{ $value->desc}}</td>
+            <td>{{ $value->grupas_ID}}</td>
             <td>{{ $value->created_at}}</td>
             <td>{{ $value->updated_at }}</td>
-            <td><a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-grupas-delete',$value->id) }}"> &nbsp <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-grupas-edit',$value->id) }}"></td>
+            <td><a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-grupas-delete',$value->id) }}"> &nbsp <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-category-edit',$value->id) }}"></td>
 
        
-            
         </tr>
 
     @endforeach
     </tbody>
 </table>
-{!! $groups->render() !!}
+{!! $Categorys->render() !!}
 
 			
     </div>

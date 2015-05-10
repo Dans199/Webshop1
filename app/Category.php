@@ -12,6 +12,12 @@ class Category extends Model {
 
 		public function grupas(){
 
-		return $this->belongsTo('App/Grupas');
+		return $this->belongsTo('App\Grupas');
 	}
+
+	public function products(){
+
+		return $this->hasMany('App\Products');
+	}
+
 }

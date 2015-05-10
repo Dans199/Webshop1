@@ -14,7 +14,7 @@ class OrderItem extends Model {
 
 		public function order(){
 
-		return $this->belongsTo('app/Order');
+		return $this->belongsTo('app\Order');
 	}
 
 }

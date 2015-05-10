@@ -14,7 +14,7 @@ class Order extends Model {
 
 		public function Order(){
 
-		return $this->belongsTo('app/User');
+		return $this->belongsTo('app\User');
 	}
 
 }

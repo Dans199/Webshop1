@@ -9,7 +9,7 @@ class Image_groups extends Model {
 
 	public function grupas(){
 
-		return $this->belongsTo('App/Grupas');
+		return $this->belongsTo('App\Grupas');
 	}
 
 
