@@ -5,15 +5,27 @@ use App\User;
 use App\Grupas as Grupa ;
 use App\Category ;
 use App\Products ;
+use App\Order;
+use App\OrderItem;
 
-class ProductsController extends Controller{
 
-  public function showProducts()
+class OrdersController extends Controller{
+
+  public function showOrders()
    {
 
-   	$Products = Products::Latest()->paginate(5);
+   	$Orders =Order::Latest()->paginate(5);
 
-   	return view('Admin/Products.Products')->with('Products', $Products);
+   	return view('Admin/Orders.Order')->with('Orders', $Orders);
+
+  	}
+
+  	public function showOrderItems($id)
+    {
+
+   	$OrderItems =OrderItem::all();
+
+   	return view('Admin/Orders.Order')->with('OrderItems', $OrderItems);
 
   	}
 

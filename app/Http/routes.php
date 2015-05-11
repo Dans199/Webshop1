@@ -84,5 +84,11 @@ Route::group(['middleware' => 'auth'], function()
 
 		Route::get('/admin/Products', array('uses' => 'Admin\ProductsController@showProducts', 'as' => 'Admin-Products'));
 		Route::get('/admin/Products/add', array('uses' => 'Admin\ProductsController@AddProducts', 'as' => 'Admin-Products-add'));
+		Route::post('/admin/Products/add', array('uses' => 'Admin\ProductsController@postProducts'));
+		Route::get('/admin/Products/delete/{id}', array('uses' => 'Admin\ProductsController@DeleteProducts', 'as' => 'Admin-Products-delete'));
+		Route::get('/admin/Products/edit/{id}', array('uses' => 'Admin\ProductsController@EditProducts', 'as' => 'Admin-Products-edit'));
+		Route::post('/admin/Products/edit/{id}', array('uses' => 'Admin\ProductsController@postEdit'));
+
+		Route::get('/admin/Orders', array('uses' => 'Admin\OrdersController@showOrders', 'as' => 'Admin-Orders'));
 
 	});

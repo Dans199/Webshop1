@@ -95,6 +95,7 @@ class GrupasController extends Controller{
 		$group->update([
 			'Group_name' => $input['Group_name']
 			, 'Group_desc' => $input['Group_desc']
+			, 'updated_at' => time()
 		]);
 		return \Redirect::to('/admin/groups')->with('success', "Grupa veiksmīgi izmainīta");
 		}

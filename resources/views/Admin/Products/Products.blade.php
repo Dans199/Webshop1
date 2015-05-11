@@ -39,7 +39,7 @@
             <td>{{ $value->price}}</td>
             <td>{{ $value->created_at}}</td>
             <td>{{ $value->updated_at }}</td>
-            <td><a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-grupas-delete',$value->id) }}"> &nbsp <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-category-edit',$value->id) }}"></td>
+            <td><a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-Products-delete',$value->id) }}"> &nbsp <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-Products-edit',$value->id) }}"></td>
 
        
         </tr>
