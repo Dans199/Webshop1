@@ -90,5 +90,22 @@ Route::group(['middleware' => 'auth'], function()
 		Route::post('/admin/Products/edit/{id}', array('uses' => 'Admin\ProductsController@postEdit'));
 
 		Route::get('/admin/Orders', array('uses' => 'Admin\OrdersController@showOrders', 'as' => 'Admin-Orders'));
+		Route::get('/admin/Orders/add', array('uses' => 'Admin\OrdersController@AddOrders', 'as' => 'Admin-Orders-Add'));
+		Route::post('/admin/Orders/add', array('uses' => 'Admin\OrdersController@postOrders'));
+
+		Route::get('/admin/Orders/delete/{id}', array('uses' => 'Admin\OrdersController@DeleteOrders', 'as' => 'Admin-Orders-delete'));
+		Route::get('/admin/Orders/edit/{id}', array('uses' => 'Admin\OrdersController@EditOrders', 'as' => 'Admin-Orders-edit'));
+		Route::post('/admin/Orders/edit/{id}', array('uses' => 'Admin\OrdersController@postEdit'));
+
+
+		Route::get('/admin/Orders/{id}/items', array('uses' => 'Admin\OrdersController@showOrderItems', 'as' => 'Admin-Orders-Items'));
+
+		Route::group(array('prefix' => '/admin/Users'), function()
+		{
+
+			Route::get('/', array('uses' => 'Admin\UsersController@showUsers', 'as' => 'Admin-Users'));
+
+		});
+
 
 	});

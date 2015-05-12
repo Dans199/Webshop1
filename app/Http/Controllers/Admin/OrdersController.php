@@ -22,48 +22,51 @@ class OrdersController extends Controller{
 
   	public function showOrderItems($id)
     {
+    $Order =Order::find($id);
+    $Products = Products::all();
+   	$OrderItems =OrderItem::where('order_id', $id)->paginate(5);
 
-   	$OrderItems =OrderItem::all();
-
-   	return view('Admin/Orders.Order')->with('OrderItems', $OrderItems);
+   	return view('Admin/Orders.OrderItems')->with('OrderItems', $OrderItems)->with('Products', $Products)->with('Order', $Order);
 
   	}
 
-   public function AddProducts()
+   public function AddOrders()
    {
 
-   	$Categories = Category::all();
-   	return view('Admin/Products.Products_add')->with('Categories', $Categories);
+   	return view('Admin/Orders.Order_add');
    }
 
-  	public function postProducts()
+  	public function postOrders()
    	{
 
    		$input = \Input::all();
-		$rules = array('name' => 'required'
-			,'desc' => 'required'
-			,'cat' => 'required|min:1'
-			,'price' => 'required|numeric|regex:/^\d*(\.\d{2})?$/'
-			);
+		$rules = array(
+			'name' => 'required',
+		 'address' => 'required',
+		 'p_index' => 'required', 
+		 'tel' => 'required|numeric');
 
 		 $validator = \Validator::make($input, $rules);
                
                 if ($validator->passes())
                 {
-                        $Product = new Products();
-                        $Product->title = $input['name'];
-                        $Product->category_ID = $input['cat'];
-                        $Product->price = $input['price'];
-                        $Product->description = $input['desc'];
+                        $order = new Order();
+                        $order->name = $input['name'];
+                        $order->address = $input['address'];
+                        $order->p_index = $input['p_index'];
+                        $order->tel = $input['tel'];
+                        $order->user_id = \Auth::id();
+                        $order->save();
+               
+				return \Redirect::to('admin/Orders')->with('success', "Kategorija veiksmīgi izmainīta");
+				}
 
-                        $Product->save();
+				else
+				{
+			 	return \Redirect::back()->withErrors($validator);
 
-                          return \Redirect::to('/admin/Products');
-     
-                } else {
-                        return \Redirect::to('/admin/Products/add')->withErrors($validator);
-                }
-		}
+				}
+	}
 
 	public function DeleteProducts($id)
 
@@ -83,53 +86,48 @@ class OrdersController extends Controller{
   
     }
 
-    public function EditProducts($id)
+    public function EditOrders($id)
 	{
-		 $Product = Products::find($id);
-			$Categories = Category::all();
+		 $Order = Order::find($id);
 
-
-		return view('Admin/Products.Products_edit', [
-			'id' => $Product->id
-			, 'cat' => $Product->category_ID
-			, 'name' =>$Product->title
-			, 'desc' =>$Product->description
-			, 'price' =>$Product->price
-		])->with('Categories',$Categories);
+		return view('Admin/Orders.Order_edit', [
+			'id' => $Order->id
+			, 'name' => $Order->name
+			, 'address' =>$Order->address
+			, 'p_index' =>$Order->p_index
+			, 'tel' =>$Order->tel
+		]);
 	}
 
 	public function postEdit($id)
 	{
-		 $Product = Products::find($id);
+		  $order = Order::find($id);
 		 $input = \Input::all();
 
-		 $rules = array('name' => 'required'
-			,'desc' => 'required'
-			,'cat' => 'required|min:1'
-			,'price' => 'required|numeric|regex:/^\d*(\.\d{2})?$/'
-		);
+		$rules = array(
+		'name' => 'required',
+		 'address' => 'required',
+		 'p_index' => 'required', 
+		 'tel' => 'required|numeric');
 
 		 $validator = \Validator::make($input, $rules);
 
 		if ($validator->passes())
         {
 
-         $Product->title = $input['name'];
-         $Product->category_ID = $input['cat'];
-         $Product->price = $input['price'];
-         $Product->description = $input['desc'];
-		 $Product->updated_at=time();
-		 $Product->save();
+         $order->name = $input['name'];
+         $order->address = $input['address'];
+         $order->p_index = $input['p_index'];
+         $order->tel = $input['tel'];
+         $order->user_id = \Auth::id();
+		 $order->updated_at=time();
+		 $order->save();
 
-
-
-		return \Redirect::to('admin/Products')->with('success', "Kategorija veiksmīgi izmainīta");
+		return \Redirect::to('admin/Orders')->with('success', "Kategorija veiksmīgi izmainīta");
 		}
-
 		else
 		{
-			 return \Redirect::back()->withErrors($validator);
-
+		return \Redirect::back()->withErrors($validator);
 		}
 
 	}

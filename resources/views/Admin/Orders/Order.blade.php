@@ -13,7 +13,7 @@
 	@endif
 
     			<h4 >Pasūtijumi !</h4>
-    			Pievienot manūali pasūtijumu!: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-category-add') }}"></a>
+    			Pievienot manūali pasūtijumu!: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Orders-Add') }}"></a>
 
 	<table class="table table-striped table-bordered">
     <thead>
@@ -40,8 +40,8 @@
             <td>{{ $value->user_id}}</td>
             <td>{{ $value->updated_at }}</td>
             <td><a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-grupas-delete',$value->id) }}">
-             &nbsp <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-category-edit',$value->id) }}">
-             &nbsp <a class="glyphicon glyphicon-folder-open" href="">
+             &nbsp <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-Orders-edit',$value->id) }}">
+                        &nbsp <a class="glyphicon glyphicon-folder-open" href="{{ URL::route('Admin-Orders-Items',$value->id) }}">
          </td>
 
        
