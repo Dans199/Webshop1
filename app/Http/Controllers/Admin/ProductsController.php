@@ -58,6 +58,9 @@ class ProductsController extends Controller{
    	{			
    			$Product = Products::find($id);
 
+   			$Product->orderitem()->delete();
+
+
 		if ($Product->delete())
 		{
 			   return \Redirect::to('/admin/Products')->with('success', "Prece veiksmīgi izdzēsta!");

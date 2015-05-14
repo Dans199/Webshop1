@@ -17,6 +17,11 @@ class Grupas extends Model {
 		return $this->hasMany('App\Category');
 	}
 
+	public function imagegroups(){
+
+		return $this->hasMany('App\Image_groups','grupas_ID','id');
+	}
+
 }
 
 

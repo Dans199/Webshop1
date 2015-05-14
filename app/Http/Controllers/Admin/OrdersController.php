@@ -67,7 +67,7 @@ class OrdersController extends Controller{
                         $order->user_id = \Auth::id();
                         $order->save();
                
-				return \Redirect::to('admin/Orders')->with('success', "Kategorija veiksmīgi izmainīta");
+				return \Redirect::to('admin/Orders')->with('success', "Pasūtītājums pievienots");
 				}
 
 				else
@@ -76,6 +76,26 @@ class OrdersController extends Controller{
 
 				}
 	}
+
+
+		public function DeleteOrders($id)
+
+   	{			
+   			$Order = Order::find($id);
+   			$Order->orderitem()->delete();
+
+		if ($Order->delete())
+		{
+			   return \Redirect::back()->with('success', "Pasūtijums  veiksmīgi izdzēst!");
+		}
+			else
+			{
+				   return \Redirect::back()->with('fail', "An error occured while deleting the Product.");
+			}
+
+
+  
+    }
 
 
 

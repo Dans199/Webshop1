@@ -51,19 +51,24 @@ class CategoryController extends Controller{
 	public function DeleteCategory($id)
 
    	{			
-   		$group = Grupa::find($id);
+   		$category = Category::find($id);
 
-	   $products = Grupa::find($id)->category()->products->delete();
-	   $category= Grupa::find($id)->category->delete();
+		foreach ($category->products as $product){
+
+		$product->orderitem()->delete();
+
+		}
+
+    $category->products()->delete();
 
 
-		if ($group->delete())
+		if ($category->delete())
 		{
-			   return \Redirect::to('/admin/groups')->with('success', "Grupa veiksmīgi izdzēsta!");
+			   return \Redirect::to('/admin/Categories')->with('success', "Kategorija veiksmīgi izdzēsta!");
 		}
 			else
 			{
-				   return \Redirect::to('/admin/groups')->with('fail', "An error occured while deleting the group.");
+				   return \Redirect::to('/admin/Categories')->with('fail', "An error occured while deleting the group.");
 			}
 
 

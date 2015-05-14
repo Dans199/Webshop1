@@ -7,6 +7,7 @@ use App\User;
 use App\Grupas as Grupa ;
 use App\Category ;
 use App\Products ;
+use App\Image_groups ;
 
 class GrupasController extends Controller{
 
@@ -62,6 +63,9 @@ class GrupasController extends Controller{
     $category->products()->delete();
     $category->delete();
 	}
+
+	$group->imagegroups()->delete();
+
 
 
 

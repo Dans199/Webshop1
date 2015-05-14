@@ -19,7 +19,7 @@ class Products extends Model {
 
 	public function orderitem(){
 
-		return $this->hasMany('App\OrderItem');
+		return $this->hasMany('App\OrderItem','product_id','id');
 	}
 
 }

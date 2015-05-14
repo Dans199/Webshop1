@@ -5,6 +5,7 @@ use App\User;
 use App\Grupas as Grupa ;
 use App\Category ;
 use App\Products ;
+use App\Order;
 
 class UsersController extends Controller{
 
@@ -61,6 +62,13 @@ class UsersController extends Controller{
 
    	{			
    			$User = User::find($id);
+
+   			foreach ($User->order as $key => $Order) {
+   				$Order->orderitem()->delete();
+   			}
+
+   			$User->order()->delete();
+
 
 		if ($User->delete())
 		{

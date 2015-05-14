@@ -39,7 +39,7 @@
             <td>{{ $value->tel}}</td>
             <td>{{ $value->user_id}}</td>
             <td>{{ $value->updated_at }}</td>
-            <td><a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-grupas-delete',$value->id) }}">
+            <td><a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-Orders-delete',$value->id) }}">
              &nbsp <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-Orders-edit',$value->id) }}">
                         &nbsp <a class="glyphicon glyphicon-folder-open" href="{{ URL::route('Admin-Orders-Items',$value->id) }}">
          </td>

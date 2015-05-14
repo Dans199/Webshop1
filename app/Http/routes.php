@@ -79,6 +79,7 @@ Route::group(['middleware' => 'auth'], function()
 		Route::get('/admin/Categories', array('uses' => 'Admin\CategoryController@showCategory', 'as' => 'Admin-category'));
 		Route::get('/admin/Categories/add', array('uses' => 'Admin\CategoryController@AddCategory', 'as' => 'Admin-category-add'));
 		Route::post('/admin/Categories/add', array('uses' => 'Admin\CategoryController@postCategory'));
+		Route::get('/admin/Categories/delete/{id}', array('uses' => 'Admin\CategoryController@DeleteCategory', 'as' => 'Admin-Categories-delete'));
 		Route::get('/admin/Categories/edit/{id}', array('uses' => 'Admin\CategoryController@EditCategory', 'as' => 'Admin-category-edit'));
 		Route::post('/admin/Categories/edit/{id}', array('uses' => 'Admin\CategoryController@postEdit'));
 
