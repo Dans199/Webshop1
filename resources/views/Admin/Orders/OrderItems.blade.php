@@ -21,7 +21,7 @@
                 </div>
               
                 <h4 >Pasūtītījuma produkti !</h4>
-                Pievienot manūali produktus pasūtijumama!: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-category-add') }}"></a>
+                Pievienot manūali produktus pasūtijumama!: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Orders-Items-add' ,$id) }}"></a>
 
 	<table class="table table-striped table-bordered">
     <thead>
@@ -55,8 +55,8 @@
             <td>{{ $value->product_id}}</td>
             <td>{{ $value->order_id}}</td>
             <td>{{ $value->updated_at }}</td>
-            <td><a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-grupas-delete',$value->id) }}">
-             &nbsp <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-category-edit',$value->id) }}">
+            <td><a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-Orders-Items-Delete',$value->id) }}">
+             &nbsp <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-Orders-Items-edit',$value->id) }}">
    
          </td>
 

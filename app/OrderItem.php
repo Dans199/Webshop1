@@ -14,7 +14,12 @@ class OrderItem extends Model {
 
 		public function order(){
 
-		return $this->belongsTo('app\Order');
+		return $this->belongsTo('App\Order');
+	}
+
+	public function products(){
+
+		return $this->belongsTo('App\Products','product_id');
 	}
 
 }

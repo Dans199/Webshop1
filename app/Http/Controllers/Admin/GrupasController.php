@@ -50,10 +50,21 @@ class GrupasController extends Controller{
 	public function DeleteGroup($id)
 
    	{			
-   		$group = Grupa::find($id);
+	$group = Grupa::find($id);
+	foreach ($group->category as $category)
+	{
 
-	   $products = Grupa::find($id)->category()->products->delete();
-	   $category= Grupa::find($id)->category->delete();
+	foreach ($category->products as $product){
+
+		$product->orderitem()->delete();
+
+	}
+    $category->products()->delete();
+    $category->delete();
+	}
+
+
+
 
 
 		if ($group->delete())

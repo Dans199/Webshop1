@@ -11,107 +11,102 @@ class UsersController extends Controller{
   public function showUsers()
    {
 
-   	$User = User::Latest()->paginate(50);
+   	$User = User::Latest()->paginate(25);
 
    	return view('Admin/Users.Users')->with('User', $User);
 
   	}
 
-   public function AddProducts()
+   public function AddUser()
    {
 
-   	$Categories = Category::all();
-   	return view('Admin/Products.Products_add')->with('Categories', $Categories);
+   	return view('Admin/Users.Users_add');
    }
 
-  	public function postProducts()
+  	public function postUser()
    	{
 
    		$input = \Input::all();
-		$rules = array('name' => 'required'
-			,'desc' => 'required'
-			,'cat' => 'required|min:1'
-			,'price' => 'required|numeric|regex:/^\d*(\.\d{2})?$/'
+		$rules = array('email' => 'required|email|max:255|unique:users',
+			'name' => 'required|max:255',
+			'password' => 'required|min:6',
+			'password_confirmation' => 'required|same:password',
+			'isAdmin' => 'required|numeric|min:0',
+
+
 			);
+
+					$password = $input['password'];
+				$password = \Hash::make($password);
 
 		 $validator = \Validator::make($input, $rules);
                
                 if ($validator->passes())
                 {
-                        $Product = new Products();
-                        $Product->title = $input['name'];
-                        $Product->category_ID = $input['cat'];
-                        $Product->price = $input['price'];
-                        $Product->description = $input['desc'];
+                        $User = new User();
+                        $User->name = $input['name'];
+                        $User->email = $input['email'];
+                        $User->isAdmin = $input['isAdmin'];
+                        $User->password = $password;
+                        $User->save();
 
-                        $Product->save();
-
-                          return \Redirect::to('/admin/Products');
+                          return \Redirect::to('/admin/Users');
      
                 } else {
-                        return \Redirect::to('/admin/Products/add')->withErrors($validator);
+                        return \Redirect::to('/admin/Users/add')->withErrors($validator);
                 }
 		}
 
-	public function DeleteProducts($id)
+	public function DeleteUser($id)
 
    	{			
-   			$Product = Products::find($id);
+   			$User = User::find($id);
 
-		if ($Product->delete())
+		if ($User->delete())
 		{
-			   return \Redirect::to('/admin/Products')->with('success', "Prece veiksmīgi izdzēsta!");
+			    return \Redirect::to('/admin/Users')->with('success', "Lietotājs veiksmīgi izdzēsta!");
 		}
 			else
+
 			{
-				   return \Redirect::to('/admin/Products')->with('fail', "An error occured while deleting the Product.");
+				   return \Redirect::to('/admin/Users')->with('fail', "An error occured while deleting the Product.");
 			}
 
 
   
     }
 
-    public function EditProducts($id)
+    public function EditUser($id)
 	{
-		 $Product = Products::find($id);
-			$Categories = Category::all();
+		 $User = User::find($id);
 
 
-		return view('Admin/Products.Products_edit', [
-			'id' => $Product->id
-			, 'cat' => $Product->category_ID
-			, 'name' =>$Product->title
-			, 'desc' =>$Product->description
-			, 'price' =>$Product->price
-		])->with('Categories',$Categories);
+		return view('Admin/Users.Users_edit', [
+			'isAdmin' =>$User->isAdmin
+		])->with('User',$User);
 	}
 
 	public function postEdit($id)
 	{
-		 $Product = Products::find($id);
+		 $User = User::find($id);
 		 $input = \Input::all();
 
-		 $rules = array('name' => 'required'
-			,'desc' => 'required'
-			,'cat' => 'required|min:1'
-			,'price' => 'required|numeric|regex:/^\d*(\.\d{2})?$/'
-		);
+		$rules = array(
+			'isAdmin' => 'required|numeric|min:0',
+			);
 
 		 $validator = \Validator::make($input, $rules);
 
 		if ($validator->passes())
         {
 
-         $Product->title = $input['name'];
-         $Product->category_ID = $input['cat'];
-         $Product->price = $input['price'];
-         $Product->description = $input['desc'];
-		 $Product->updated_at=time();
-		 $Product->save();
+         $User->isAdmin = $input['isAdmin'];
+		 $User->updated_at=time();
+		 $User->save();
 
 
 
-		return \Redirect::to('admin/Products')->with('success', "Kategorija veiksmīgi izmainīta");
+		return \Redirect::to('/admin/Users')->with('success', "Lietotājs veiksmīgi izmainīts");
 		}
 
 		else

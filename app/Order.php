@@ -12,9 +12,9 @@ class Order extends Model {
 	 */
 	protected $table = 'orders';
 
-		public function Order(){
+		public function User(){
 
-		return $this->belongsTo('app\User');
+		return $this->belongsTo('App\User');
 	}
 
 }

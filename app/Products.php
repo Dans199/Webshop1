@@ -14,7 +14,12 @@ class Products extends Model {
 
 		public function category(){
 
-		return $this->belongsTo('App/Category');
+		return $this->belongsTo('App\Category');
+	}
+
+	public function orderitem(){
+
+		return $this->hasMany('App\OrderItem');
 	}
 
 }

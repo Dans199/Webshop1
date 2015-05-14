@@ -13,7 +13,7 @@
 	@endif
 
     			<h4 >Lietotāji Datubāzē!</h4>
-    			Pievienot Jaunu Lietotāju: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-grupas-add') }}"></a>
+    			Pievienot Jaunu Lietotāju: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Users-add') }}"></a>
 
 	<table class="table table-striped table-bordered">
     <thead>
@@ -37,7 +37,7 @@
              <td>{{ $value->isAdmin }}</td>
               <td>{{ $value->created_at }}</td>
             <td>{{ $value->updated_at }}</td>
-            <td><a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-grupas-delete',$value->id) }}"> &nbsp <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-grupas-edit',$value->id) }}"></td>
+            <td><a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-Users-delete',$value->id) }}"> &nbsp <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-Users-edit',$value->id) }}"></td>
 
        
             
