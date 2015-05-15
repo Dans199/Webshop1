@@ -12,22 +12,26 @@ $.ajaxSetup({
     }
 });
 
-$("#categories").change(function(){
+$( document ).ready(function() {
+      $("#categories").change(function(){
+        alert('select worked');
 
-$.post('/admin/Orders/items/products/'+$(this).val(), function(response){
-    if(response.success)
-    {
-      alert('worked');
-        var Products = $('#products').empty();
-        $.each(response.products, function(i, products){
-            $('<option/>', {
-                value:products.id,
-                text:products.title
-            }).appendTo(Products);
-    
-        })
-    }
-}, 'json');
+              $.post('/admin/Orders/items/products/'+$(this).val(), function(response){
+                  if(response.success)
+                  {
+                    alert('worked');
+                      var Products = $('#products').empty();
+                     
+                      $.each(response.products, function(i, products){
+                          $('<option/>', {
+                              value:products.id,
+                              text:products.title
+                          }).appendTo(Products);
+
+                      })
+                  }
+              }, 'json');
+      });
 });
 
 
