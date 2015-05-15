@@ -6,17 +6,27 @@ use App\Grupas as Grupa ;
 use App\Category ;
 use App\Products ;
 
-class OrderItemsController extends Controller{
+class OrdersItemsController extends Controller{
 
 
 	public function updateProductOption($id)
 	{
 
-	    $products= Product::where('category_ID', $id)->get();
+	    $products= Products::where('category_ID', $id)->get();
 
 	    return response()->json(['success' => true, 'products' =>  $products]);
 
 	}
+
+	public function updateCategoryOption($id)
+	{
+
+	    $Category= Category::where('grupas_ID', $id)->get();
+
+	    return response()->json(['success' => true, 'Category' =>  $Category]);
+
+	}
+
 
 
 

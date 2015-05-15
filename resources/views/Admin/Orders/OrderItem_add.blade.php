@@ -4,7 +4,7 @@
 @section('content')
 
 
-<script type="text/javascript">
+<script  >
 
 $.ajaxSetup({
     headers: {
@@ -13,16 +13,17 @@ $.ajaxSetup({
 });
 
 $( document ).ready(function() {
-      $("#categories").change(function(){
-        alert('select worked');
 
-              $.post('/admin/Orders/items/products/'+$(this).val(), function(response){
+      $("#categories").change(function(){
+              $.post('/admin/Orders/items/products/'+ $(this).val(), function(response){
+                console.log(response);
                   if(response.success)
                   {
-                    alert('worked');
                       var Products = $('#products').empty();
+
                      
                       $.each(response.products, function(i, products){
+                        console.log(i);
                           $('<option/>', {
                               value:products.id,
                               text:products.title
@@ -32,6 +33,29 @@ $( document ).ready(function() {
                   }
               }, 'json');
       });
+
+            $("#Group").change(function(){
+       
+              $.post('/admin/Orders/items/category/'+ $(this).val(), function(response){
+                console.log(response);
+                  if(response.success)
+                  {
+                      var Categories = $('#categories').empty();
+                     
+                      $.each(response.Category, function(i,Category){
+                        console.log(i);
+                          $('<option/>', {
+                              value:Category.id,
+                              text:Category.name
+                          }).appendTo(Categories);
+
+                      })
+                  }
+              }, 'json');
+      });
+
+
+
 });
 
 
@@ -60,29 +84,36 @@ $( document ).ready(function() {
     <div style="  width: 700px;float:left;">
 
 
+               Izvēlieties Grupu: <br>
+             <select name="Group" id="Group" style="width:170px;">
+          <option value="">Izvēlieties Grupu!</option>
+          @foreach($Group as $key => $value)
+         
+              <option value="{{ $value->id }}" onclick="loadProducts( $value->id')" >{{ $value->Group_name }}</option>
+               @endforeach
 
-        <select name="categories" id="categories">
-          <option value="">Izvēlieties Kategoriju!</option>
-            @foreach($Categories as $key => $value)
-
-              <option value="{{ $value->id }}" onclick="loadProducts( $value->id')" >{{ $value->name }}</option>
-
-             @endforeach
          </select> 
-         <br />
-             <br />
+         <br /><br />
 
-        <select id="products">
+          Izvēlieties Kategoriju:<br />
+        <select name="categories" id="categories" style="width:170px;">
+          <option value="">Izvēlieties Kategoriju!</option>
+              <option value="{{ $value->id }}" onclick="loadProducts( $value->id')" >{{ $value->name }}</option>
+         </select> 
+         <br /><br />
+  
+              Izvēlieties Produktu:<br />
+        <select name="products" id="products" style="width:170px;">
           <option value="">Izvēlieties Produktu!</option>
      
          </select> 
-         <br />
+         <br /><br />
 
            <label for="quantity">
             Preces Daudzums <br>
             {!! Form::text('quantity', null, ['id' => 'name']) !!}
         </label>
-        <br />
+        <br /><br />
 
 
         <label for="order_id">

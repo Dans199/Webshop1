@@ -9,6 +9,10 @@
 
 	<link href="/css/app.css" rel="stylesheet">
 
+		<!-- Scripts -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
 
 
 	<!-- Fonts -->
@@ -33,6 +37,7 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
+					<li><a href="{{ URL::route('Admin') }}">Admiņa panelis</a></li>
 					<li><a href="{{ URL::route('Admin-grupas') }}">Grupas</a></li>
 					<li><a href="{{ URL::route('Admin-category') }}">Kategorijas</a></li>
 					<li><a href="{{ URL::route('Admin-Products') }}">Produkti</a></li>
@@ -64,8 +69,6 @@
 
 	@yield('content')
 
-	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>

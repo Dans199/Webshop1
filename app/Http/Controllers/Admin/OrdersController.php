@@ -39,9 +39,10 @@ class OrdersController extends Controller{
    public function AddOrdersItems($id)
    {
 
+   	$Group = Grupa::all();
    	$Categories = Category::all();
 
-   	return view('Admin/Orders.Orderitem_add')->with('id', $id)->with('Categories', $Categories);
+   	return view('Admin/Orders.Orderitem_add')->with('id', $id)->with('Group', $Group);
 
    }
 
@@ -76,6 +77,42 @@ class OrdersController extends Controller{
 
 				}
 	}
+
+
+	public function postOrdersItems()
+   	{
+
+   		$input = \Input::all();
+		$rules = array(
+		'order_id' => 'required',
+		 'products' => 'required',
+		 'quantity' => 'required|numeric');
+
+
+		$price = Products::find($input['products'])->pluck('price');
+
+		 $validator = \Validator::make($input, $rules);
+               
+                if ($validator->passes())
+                {
+                        $OrderItem = new OrderItem();
+                        $OrderItem->quantity = $input['quantity'];
+                        $OrderItem->product_id = $input['products'];
+                        $OrderItem->order_id = $input['order_id'];
+                        $OrderItem->cena=$price;
+                        $OrderItem->save();
+               
+				return \Redirect::to("/admin/Orders/$OrderItem->order_id/items")->with('success', "Produkts pievienots");
+				}
+
+				else
+				{
+			 	return \Redirect::back()->withErrors($validator);
+
+				}
+	}
+
+
 
 
 		public function DeleteOrders($id)

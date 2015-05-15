@@ -47,7 +47,7 @@
     <br />
 
     <select name="isAdmin">
-                <option value="">Vai ir admins!</option>
+                <option value="">Izvelies Admiņa tiesības!</option>
                 <option value="0">Nav Admins</option>
                 <option value="1">Ir Admins</option>
     </select> 
