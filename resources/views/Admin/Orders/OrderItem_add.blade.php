@@ -1,17 +1,38 @@
 @extends('Admin.master')
 
-<script>
-
-        function loadProducts(cv){
-
-          var url="/admin/Orders/items/products";
-          $.post(url,{contentVar: cv}, function (data){
-              $(".Products").html(data);
-          });
-        }
-</script>
 
 @section('content')
+
+
+<script type="text/javascript">
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$("#categories").change(function(){
+
+$.post('/admin/Orders/items/products/'+$(this).val(), function(response){
+    if(response.success)
+    {
+      alert('worked');
+        var Products = $('#products').empty();
+        $.each(response.products, function(i, products){
+            $('<option/>', {
+                value:products.id,
+                text:products.title
+            }).appendTo(Products);
+    
+        })
+    }
+}, 'json');
+});
+
+
+
+</script>
 
   <div class="row">
   <div class="col-md-8 col-md-offset-2">
@@ -31,12 +52,12 @@
             </div>
           @endif
 
-    {!! Form::open() !!}
+   {!! Form::open() !!}
     <div style="  width: 700px;float:left;">
 
 
 
-        <select name="cat">
+        <select name="categories" id="categories">
           <option value="">Izvēlieties Kategoriju!</option>
             @foreach($Categories as $key => $value)
 
@@ -47,7 +68,7 @@
          <br />
              <br />
 
-        <select name="Products" cla>
+        <select id="products">
           <option value="">Izvēlieties Produktu!</option>
      
          </select> 
@@ -67,7 +88,7 @@
         <br />
 
 
-        {!! Form::submit('Pievienot Pasūtījumu') !!}
+        {!! Form::submit('Pievienot Pasūtījumam produktu') !!}
 
     </div>
    </div>

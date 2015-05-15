@@ -93,7 +93,6 @@ Route::group(['middleware' => 'auth'], function()
 		Route::get('/admin/Orders', array('uses' => 'Admin\OrdersController@showOrders', 'as' => 'Admin-Orders'));
 		Route::get('/admin/Orders/add', array('uses' => 'Admin\OrdersController@AddOrders', 'as' => 'Admin-Orders-Add'));
 		Route::post('/admin/Orders/add', array('uses' => 'Admin\OrdersController@postOrders'));
-
 		Route::get('/admin/Orders/delete/{id}', array('uses' => 'Admin\OrdersController@DeleteOrders', 'as' => 'Admin-Orders-delete'));
 		Route::get('/admin/Orders/edit/{id}', array('uses' => 'Admin\OrdersController@EditOrders', 'as' => 'Admin-Orders-edit'));
 		Route::post('/admin/Orders/edit/{id}', array('uses' => 'Admin\OrdersController@postEdit'));
@@ -124,14 +123,7 @@ Route::group(['middleware' => 'auth'], function()
 
 		});
 
-
-
-
-
-
-
-
-		Route::get('/admin/Orders/items/products', array('uses' => 'Admin\OrdersController@AddOrdersItems', 'as' => 'Admin-Orders-Items-add'));
+		Route::post('/admin/Orders/items/products/{id}', array('uses' => 'Admin\OrdersItemsController@updateProductOption'));
 
 
 

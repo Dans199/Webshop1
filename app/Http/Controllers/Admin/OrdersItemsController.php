@@ -8,14 +8,18 @@ use App\Products ;
 
 class OrderItemsController extends Controller{
 
-if(isset($_post['contentVar']))
 
-	$products = Product::where('category_ID', $_post['contentVar'])->get();
+	public function updateProductOption($id)
+	{
 
-foreach ($products as $key => $value) {
-		echo "<option value=\"$value->id\">$value->title</option>";
-	
-		}
-	
+	    $products= Product::where('category_ID', $id)->get();
+
+	    return response()->json(['success' => true, 'products' =>  $products]);
+
+	}
+
+
 
 }
+	
+
