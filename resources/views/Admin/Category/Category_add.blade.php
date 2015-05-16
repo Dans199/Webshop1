@@ -20,7 +20,7 @@
             </div>
           @endif
 
-    {!! Form::open() !!}
+    {!! Form::open(array('url'=>'admin/Categories/add','method'=>'POST', 'files'=>true)) !!}
         <label for="name">
             Kategorijas Nosaukums<br />
             {!! Form::text('name', null, ['id' => 'name']) !!}
@@ -41,6 +41,15 @@
             {!! Form::textarea('desc', null, ['id' => 'desc']) !!}
         </label>
         <br />
+
+        <div class="control-group">
+          <div class="controls">
+            Izvēlieties bildi kategorijai! <br/>
+          {!! Form::file('image') !!}
+          <br/>
+
+             </div>
+             </div>
         {!! Form::submit('Pievienot Kategoriju') !!}
 
     </div>

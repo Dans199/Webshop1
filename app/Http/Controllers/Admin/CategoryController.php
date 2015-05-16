@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Grupas as Grupa ;
+use App\Grupas as Grupa;
 use App\Category ;
 use App\Products ;
+use App\Image_Category;
 
 class CategoryController extends Controller{
 
@@ -29,7 +30,10 @@ class CategoryController extends Controller{
    	{
 
    		$input = \Input::all();
-		$rules = array('name' => 'required','desc' => 'required','group' => 'required|min:1');
+		$rules = array('name' => 'required',
+			'desc' => 'required',
+			'group' => 'required|min:1',
+			'image' => 'required|mimes:jpeg,bmp,png');
 
 		 $validator = \Validator::make($input, $rules);
                
@@ -40,6 +44,25 @@ class CategoryController extends Controller{
                         $Category->grupas_ID = $input['group'];
                         $Category->desc = $input['desc'];
                         $Category->save();
+
+
+
+                        if (\Input::file('image')->isValid())
+                        {
+						      $destinationPath = 'upload'; // upload path
+						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
+						      $fileName ='Category_'.rand(11111,99999).'.'.$extension; // renameing image
+						      \Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+						      // sending back with message
+						      \Session::flash('success', 'Upload successfully');
+
+						      $path = "upload/".$fileName;
+
+	                          $Image_Category = new Image_Category();
+	                          $Image_Category->image =$path;
+	                          $Image_Category->category_id =$Category->id;
+	                          $Image_Category->save();
+						}
 
                           return \Redirect::to('/admin/Categories');
      
@@ -60,6 +83,9 @@ class CategoryController extends Controller{
 		}
 
     $category->products()->delete();
+
+
+	 $category->imageCategory()->delete();
 
 
 		if ($category->delete())

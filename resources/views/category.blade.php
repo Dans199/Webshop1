@@ -18,9 +18,16 @@
 <div class="panel panel-default" style="width:200px;float:left;  border-width: 2px;margin: 10px;">
   <div class="panel-heading" ><a href="{{ URL::route('shop-product', $category->id) }}">{{ $category->name }}</a></li></div>
   <div class="panel-body col-lg-1 col-centered">
+          @foreach($Image_Category as $Cat_image)
+      @if($category->id == $Cat_image->category_id)
+      <div>
+        <img src="{{ $Cat_image->image }}" alt="{{$Cat_image->id}}" style="width:160px;height:100px"  class="img-thumbnail" > 
+     </div>
 
+     @endif
+      @endforeach
       <br>
-   {{ $category->desc }}
+   {{ $category->desc }} 
   </div>
 </div>
 

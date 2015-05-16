@@ -29,8 +29,11 @@ class GrupasController extends Controller{
   	public function postGroup()
    	{
 
+   
+
    		$input = \Input::all();
-		$rules = array('Group_name' => 'required','Group_desc' => 'required');
+		$rules = array('Group_name' => 'required','Group_desc' => 'required', 'image' => 'required|mimes:jpeg,bmp,png');
+		$file = array('image' => \Input::file('image'));
 
 		 $validator = \Validator::make($input, $rules);
                
@@ -41,6 +44,23 @@ class GrupasController extends Controller{
                         $group->Group_desc = $input['Group_desc'];
                         $group->save();
 
+                        if (\Input::file('image')->isValid())
+                        {
+						      $destinationPath = 'upload'; // upload path
+						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
+						      $fileName ='Group_'.rand(11111,99999).'.'.$extension; // renameing image
+						      \Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+						      // sending back with message
+						      \Session::flash('success', 'Upload successfully');
+
+						      $path = "upload/".$fileName;
+
+	                          $Image_groups = new Image_groups();
+	                          $Image_groups->image =$path;
+	                          $Image_groups->grupas_ID = $group->id;
+	                          $Image_groups->save();
+						}
+
                           return \Redirect::to('/admin/groups');
      
                 } else {
@@ -50,7 +70,8 @@ class GrupasController extends Controller{
 
 	public function DeleteGroup($id)
 
-   	{			
+   	{
+
 	$group = Grupa::find($id);
 	foreach ($group->category as $category)
 	{
@@ -64,11 +85,13 @@ class GrupasController extends Controller{
     $category->delete();
 	}
 
+	$Upload=Image_groups::where('grupas_ID', $id)->pluck('image');
+
+	$path= public_path().$Upload;
+
+	\File::delete($path);
+
 	$group->imagegroups()->delete();
-
-
-
-
 
 
 		if ($group->delete())

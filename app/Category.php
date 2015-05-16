@@ -20,4 +20,9 @@ class Category extends Model {
 		return $this->hasMany('App\Products');
 	}
 
+	public function imageCategory(){
+
+		return $this->hasMany('App\Image_Category','category_id','id');
+	}
+
 }

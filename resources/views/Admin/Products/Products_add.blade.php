@@ -7,7 +7,7 @@
 
 
 
-    			<h4 >Jaunas Kategorijas Pievienošana!</h4>
+    			<h4 >Jaunas Produkta Pievienošana!</h4>
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -20,7 +20,7 @@
             </div>
           @endif
 
-    {!! Form::open() !!}
+    {!! Form::open(array('url'=>'admin/Products/add','method'=>'POST', 'files'=>true)) !!}
         <label for="name">
             Produkta Nosaukums<br />
             {!! Form::text('name', null, ['id' => 'name']) !!}
@@ -46,6 +46,13 @@
             {!! Form::text('price', null, ['id' => 'price']) !!}
         </label>
         <br />
+
+        <div class="control-group">
+          <div class="controls">
+            Izvēlieties bildi Produktam! <br/>
+          {!! Form::file('image') !!}
+          <br/>
+
         {!! Form::submit('Pievienot Produktu!') !!}
 
     </div>

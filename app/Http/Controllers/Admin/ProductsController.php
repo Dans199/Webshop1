@@ -5,6 +5,7 @@ use App\User;
 use App\Grupas as Grupa ;
 use App\Category ;
 use App\Products ;
+use App\Image_Product;
 
 class ProductsController extends Controller{
 
@@ -32,6 +33,7 @@ class ProductsController extends Controller{
 			,'desc' => 'required'
 			,'cat' => 'required|min:1'
 			,'price' => 'required|numeric|regex:/^\d*(\.\d{2})?$/'
+			,'image' => 'required|mimes:jpeg,bmp,png'
 			);
 
 		 $validator = \Validator::make($input, $rules);
@@ -45,6 +47,24 @@ class ProductsController extends Controller{
                         $Product->description = $input['desc'];
 
                         $Product->save();
+
+                        if (\Input::file('image')->isValid())
+                        {
+						      $destinationPath = 'upload'; // upload path
+						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
+						      $fileName ='Product_'.rand(11111,99999).'.'.$extension; // renameing image
+						      \Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+						      // sending back with message
+						      \Session::flash('success', 'Upload successfully');
+
+						      $path = "upload/".$fileName;
+
+	                          $Image_Product = new Image_Product();
+	                          $Image_Product->image =$path;
+	                          $Image_Product->product_id = $Product->id;
+	                          $Image_Product->save();
+						}
+
 
                           return \Redirect::to('/admin/Products');
      

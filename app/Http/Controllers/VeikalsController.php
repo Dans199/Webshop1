@@ -3,6 +3,8 @@ use App\Grupas as Grupas;
 use App\Image_groups as Image_groups;
 use App\category as Category;
 use App\Products as Product;
+use App\Image_Category;
+use App\Image_Product;
 
 
 class VeikalsController extends Controller {
@@ -46,6 +48,7 @@ class VeikalsController extends Controller {
 	public function category($id)
 	{
 		$categorys = Category::where('grupas_ID', $id)->get();
+		$Image_Category=Image_Category::all();
 
 
 		if ($categorys == null)
@@ -54,12 +57,14 @@ class VeikalsController extends Controller {
 		}
 		// $threads = $category->threads()->get();
 
-		return view('category')->with('categorys', $categorys);
+		return view('category')->with('categorys', $categorys)->with('Image_Category', $Image_Category);
 	}
 
 	public function product($id)
 	{
 		$products = Product::where('category_ID', $id)->get();
+		$Image_Products=Image_Product::all();
+
 
 
 		if ($products == null)
@@ -68,7 +73,7 @@ class VeikalsController extends Controller {
 		}
 		// $threads = $category->threads()->get();
 
-		return view('products')->with('products', $products);
+		return view('products')->with('products', $products)->with('Image_Products', $Image_Products);
 	}
 
 		public function product_info($id)

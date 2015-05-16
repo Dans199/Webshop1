@@ -14,11 +14,11 @@ class HelloController extends Controller{
   public function showPanel()
    {
 
-
+   	$CurrentUserCount= user::count();
 
    	if (!\Auth::guest() && \Auth::user()->isAdmin()){
 
-    return View('Admin.Panel');
+    return View('Admin.Panel')->with('CurrentUserCount',$CurrentUserCount);
 
 	}
 	else

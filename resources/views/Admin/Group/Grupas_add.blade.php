@@ -20,7 +20,7 @@
             </div>
           @endif
 
-    {!! Form::open() !!}
+    {!! Form::open(array('url'=>'admin/groups/add','method'=>'POST', 'files'=>true)) !!}
         <label for="Group_name">
             Grupas Nosaukums<br />
             {!! Form::text('Group_name', null, ['id' => 'Group_name']) !!}
@@ -31,6 +31,16 @@
             {!! Form::textarea('Group_desc', null, ['id' => 'Group_desc']) !!}
         </label>
         <br />
+
+        <div class="control-group">
+          <div class="controls">
+          {!! Form::file('image') !!}
+
+             </div>
+             </div>
+
+
+
         {!! Form::submit('Pievienot grupu') !!}
 
     </div>
