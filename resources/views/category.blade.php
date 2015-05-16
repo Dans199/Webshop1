@@ -21,7 +21,7 @@
           @foreach($Image_Category as $Cat_image)
       @if($category->id == $Cat_image->category_id)
       <div>
-        <img src="{{ $Cat_image->image }}" alt="{{$Cat_image->id}}" style="width:160px;height:100px"  class="img-thumbnail" > 
+        <img src="{{ asset($Cat_image->image) }}" alt="{{$Cat_image->id}}" style="width:160px;height:100px"  class="img-thumbnail" > 
      </div>
 
      @endif

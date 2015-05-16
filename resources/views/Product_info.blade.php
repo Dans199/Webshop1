@@ -11,30 +11,31 @@
 	@elseif (Session::has('fail'))
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif
-<!--   <pre>
- {{ print_r($products)}}
-</pre> -->
 
-    		@foreach($products as $product)
-<h4>{{ $product->title }}</h4>
-<div class="panel panel-default" style="border-width: 2px;margin: 10px;">
-  <div class="panel-body col-lg-1 col-centered">
+<h3>Produkta Informācija!<h3>
+  <div>
 
-      <br>
-   {{ $product->description }}
-   <div style="Float:right;">
 
-   Cena:
-    <strong>{{ $product->price }}</strong>
-      <a href="{{ URL::route('add-cart', $product->id )}}">Add to cart!</a>
+   <img src="{{asset($Image_Product->image)}}" alt="{{$Image_Product->id}}"  width="300" height="100"  class="img-thumbnail"> 
+<div>
+ <div>
+    <h4><strong>Preces Nosaukums:</strong> {{ $product->title }}</h4>
+      <div>
+     <strong>Apraksts:</strong> <br>
+     {{ $product->description }}
+ </div>
   </div>
+
+<div >
+    <strong>Cena: </strong>
+    € {{ $product->price }} 
+    <br>
+      <a href="{{ URL::route('add-cart', $product->id )}}">Pievienot Grozam!</a>
+  </div>
+
   </div>
 </div>
-
-			@endforeach
 			
-    </div>
-   </div>
 
   
 @stop

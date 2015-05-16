@@ -78,15 +78,16 @@ class VeikalsController extends Controller {
 
 		public function product_info($id)
 	{
-		$products = Product::where('id', $id)->get();
+		$product = Product::where('id', $id)->first();
+		$Image_Product=Image_Product::where('product_id', $id)->first();
 
 
-		if ($products == null)
+		if ($product == null)
 		{
 			return \Redirect::route('veikals')->with('fail', "That category doesn't exist.");
 		}
 
 
-		return view('product_info')->with('products', $products);
+		return view('product_info')->with('product', $product)->with('Image_Product', $Image_Product);
 	}
 }
