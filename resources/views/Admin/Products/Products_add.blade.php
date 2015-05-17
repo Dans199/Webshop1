@@ -26,6 +26,7 @@
             {!! Form::text('name', null, ['id' => 'name']) !!}
         </label>
         <br />
+           Izvelieties Kategoriju:<br>
          <select name="cat">
           <option value="">Izvēlieties Kategoriju!</option>
             @foreach($Categories as $key => $value)

@@ -105,10 +105,6 @@ Route::group(['middleware' => 'auth'], function()
 		Route::get('/admin/Orders/items/edit/{id}', array('uses' => 'Admin\OrdersController@EditOrderItems', 'as' => 'Admin-Orders-Items-edit'));
 		Route::post('/admin/Orders/items/edit/{id}', array('uses' => 'Admin\OrdersController@postOrderItemEdit'));
 
-
-
-
-
 		Route::group(array('prefix' => '/admin/Users'), function()
 		{
 
@@ -126,6 +122,13 @@ Route::group(['middleware' => 'auth'], function()
 
 		Route::post('/admin/Orders/items/products/{id}', array('uses' => 'Admin\OrdersItemsController@updateProductOption'));
 		Route::post('/admin/Orders/items/category/{id}', array('uses' => 'Admin\OrdersItemsController@updateCategoryOption'));
+
+
+
+		Route::get('/admin/gallery', array('uses' => 'Admin\GalleryController@showGalleries', 'as' => 'Admin-gallery'));
+		Route::get('/admin/gallery/groups', array('uses' => 'Admin\GalleryController@showgroups', 'as' => 'Admin-gallery-groups'));
+		Route::get('/admin/gallery/Categories', array('uses' => 'Admin\GalleryController@showcategoties', 'as' => 'Admin-gallery-categories'));
+
 
 
 

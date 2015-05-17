@@ -46,14 +46,14 @@ class GrupasController extends Controller{
 
                         if (\Input::file('image')->isValid())
                         {
-						      $destinationPath = 'upload'; // upload path
+						      $destinationPath = 'upload/group'; // upload path
 						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
 						      $fileName ='Group_'.rand(11111,99999).'.'.$extension; // renameing image
 						      \Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
 						      // sending back with message
 						      \Session::flash('success', 'Upload successfully');
 
-						      $path = "upload/".$fileName;
+						      $path = "upload/group/".$fileName;
 
 	                          $Image_groups = new Image_groups();
 	                          $Image_groups->image =$path;
@@ -110,20 +110,24 @@ class GrupasController extends Controller{
     public function getEdit($id)
 	{
 		 $group = Grupa::find($id);
+		 $Image_groups = Image_groups::where('grupas_ID',$id)->first();
 
 
 		return view('Admin/Group.Grupas_edit', [
 			'id' => $group->id
 			, 'Group_name' => $group->Group_name
 			, 'Group_desc' => $group->Group_desc
+			, 'image' => $Image_groups->image
 		]);
 	}
 
 	public function postEdit($id)
 	{
 		$group = Grupa::find($id);
+		$Image_groups = Image_groups::where('grupas_ID',$id)->first();
+
 		 $input = \Input::all();
-		 $rules = array('Group_name' => 'required','Group_desc' => 'required');
+		 $rules = array('Group_name' => 'required','Group_desc' => 'required','image' => 'mimes:jpeg,bmp,png');
 
 		 $validator = \Validator::make($input, $rules);
 
@@ -135,6 +139,22 @@ class GrupasController extends Controller{
 			, 'Group_desc' => $input['Group_desc']
 			, 'updated_at' => time()
 		]);
+
+		   if (\Input::hasFile('image'))
+                        {
+						      $destinationPath = 'upload/group'; // upload path
+						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
+						      $fileName ='Group_'.rand(11111,99999).'.'.$extension; // renameing image
+						      \Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+						      // sending back with message
+						      \Session::flash('success', 'Upload successfully');
+
+						      $path = "upload/group/".$fileName;
+						      
+	                          $Image_groups->image =$path;
+	                          $Image_groups->grupas_ID = $group->id;
+	                          $Image_groups->save();
+						}
 		return \Redirect::to('/admin/groups')->with('success', "Grupa veiksmīgi izmainīta");
 		}
 

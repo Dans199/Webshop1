@@ -20,7 +20,7 @@
             </div>
           @endif
 
-    {!! Form::open() !!}
+   {!! Form::open(['files' => true])!!}
         <label for="name">
             Kategorijas Nosaukums<br />
             {!! Form::text('name', $name, ['id' => 'name']) !!}
@@ -49,6 +49,10 @@
             {!! Form::textarea('desc', $desc, ['id' => 'desc']) !!}
         </label>
         <br />
+         <img src="{{asset($image)}}"  style="width:150px;height:100px"  class="img-thumbnail"> 
+          <br/>
+            Izvēlies bildi!<br />
+        {!! Form::file('image') !!}<br />
         {!! Form::submit('Izmainīt Kategoriju') !!}
 
     </div>

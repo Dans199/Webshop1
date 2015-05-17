@@ -4,9 +4,6 @@
 
   <div class="row">
   <div class="col-md-8 col-md-offset-2">
-
-
-
     			<h4 >Produkta izmaiņas!</h4>
 
                 @if (count($errors) > 0)
@@ -20,12 +17,13 @@
             </div>
           @endif
 
-      {!! Form::open() !!}
+      {!! Form::open(['files' => true]) !!}
         <label for="name">
             Produkta Nosaukums<br />
             {!! Form::text('name', $name, ['id' => 'name']) !!}
         </label>
         <br />
+        Izvelieties Kategoriju:<br>
          <select name="cat">
             @foreach($Categories as $key => $value)
             @if($value->id==$cat)
@@ -53,7 +51,13 @@
             {!! Form::text('price', $price, ['id' => 'price']) !!}
         </label>
         <br />
-        {!! Form::submit('Veikt izmaiņas!') !!}
+          <img src="{{asset($image)}}"  style="width:150px;height:100px"  class="img-thumbnail"> 
+          <br/>
+
+        Izvēlies bildi!<br />
+        {!! Form::file('image')!!}<br />
+
+        {!! Form::submit('Izmainīt grupu') !!}
 
     </div>
    </div>

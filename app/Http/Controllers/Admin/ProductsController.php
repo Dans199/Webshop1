@@ -50,14 +50,14 @@ class ProductsController extends Controller{
 
                         if (\Input::file('image')->isValid())
                         {
-						      $destinationPath = 'upload'; // upload path
+						      $destinationPath = 'upload/products'; // upload path
 						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
 						      $fileName ='Product_'.rand(11111,99999).'.'.$extension; // renameing image
 						      \Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
 						      // sending back with message
 						      \Session::flash('success', 'Upload successfully');
 
-						      $path = "upload/".$fileName;
+						      $path = "upload/products/".$fileName;
 
 	                          $Image_Product = new Image_Product();
 	                          $Image_Product->image =$path;
@@ -79,6 +79,7 @@ class ProductsController extends Controller{
    			$Product = Products::find($id);
 
    			$Product->orderitem()->delete();
+   			$Product->imageProduct()->delete();
 
 
 		if ($Product->delete())
@@ -98,6 +99,7 @@ class ProductsController extends Controller{
 	{
 		 $Product = Products::find($id);
 			$Categories = Category::all();
+			$Image_Product = Image_Product::where('product_id',$id)->first();
 
 
 		return view('Admin/Products.Products_edit', [
@@ -106,6 +108,7 @@ class ProductsController extends Controller{
 			, 'name' =>$Product->title
 			, 'desc' =>$Product->description
 			, 'price' =>$Product->price
+			, 'image' => $Image_Product->image
 		])->with('Categories',$Categories);
 	}
 
@@ -113,11 +116,13 @@ class ProductsController extends Controller{
 	{
 		 $Product = Products::find($id);
 		 $input = \Input::all();
+		 $Image_Product = Image_Product::where('product_id',$id)->first();
 
 		 $rules = array('name' => 'required'
 			,'desc' => 'required'
 			,'cat' => 'required|min:1'
 			,'price' => 'required|numeric|regex:/^\d*(\.\d{2})?$/'
+			,'image' => 'mimes:jpeg,bmp,png'
 		);
 
 		 $validator = \Validator::make($input, $rules);
@@ -125,16 +130,31 @@ class ProductsController extends Controller{
 		if ($validator->passes())
         {
 
-         $Product->title = $input['name'];
-         $Product->category_ID = $input['cat'];
-         $Product->price = $input['price'];
-         $Product->description = $input['desc'];
-		 $Product->updated_at=time();
-		 $Product->save();
+	         $Product->title = $input['name'];
+	         $Product->category_ID = $input['cat'];
+	         $Product->price = $input['price'];
+	         $Product->description = $input['desc'];
+			 $Product->updated_at=time();
+			 $Product->save();
+
+			  if (\Input::hasFile('image'))
+             {
+						      $destinationPath = 'upload/products'; // upload path
+						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
+						      $fileName ='Product_'.rand(11111,99999).'.'.$extension; // renameing image
+						      \Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+						  
+						      $path = "upload/products/".$fileName;
+						      
+	                          $Image_Product->image=$path;
+	                          $Image_Product->product_id=$Product->id;
+	                          $Image_Product->save();
+			 }
 
 
 
-		return \Redirect::to('admin/Products')->with('success', "Kategorija veiksmīgi izmainīta");
+
+			return \Redirect::to('admin/Products')->with('success', "Kategorija veiksmīgi izmainīta");
 		}
 
 		else

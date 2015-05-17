@@ -42,7 +42,7 @@
 					<li><a href="{{ URL::route('Admin-category') }}">Kategorijas</a></li>
 					<li><a href="{{ URL::route('Admin-Products') }}">Produkti</a></li>
 					<li><a href="{{ URL::route('Admin-Orders') }}">Pasūtijumi</a></li>
-					<li><a href="{{ URL::route('kontakti') }}">Galerijas</a></li>
+					<li><a href="{{ URL::route('Admin-gallery') }}">Galerijas</a></li>
 					<li><a href="{{ URL::route('Admin-Users') }}">Lietotāji</a></li>
 
 				</ul>

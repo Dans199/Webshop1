@@ -21,21 +21,23 @@
     		
     		@foreach($groups as $group)
 
-<div class="panel panel-default" style="width:200px;float:left;  border-width: 2px;margin: 10px;">
+<div class="panel panel-default" style="width:250px;height: 250px;float:left;  border-width: 2px;margin: 10px;">
   <div class="panel-heading" ><a href="{{ URL::route('shop-category', $group->id) }}">{{ $group->Group_name }}</a></li></div>
   <div class="panel-body col-lg-1 col-centered">
       @foreach($Image_groups as $Image_group)
       @if($group->id == $Image_group->grupas_ID)
       <div>
-       <img src="{{$Image_group->image}}" alt="{{$Image_group->id}}" style="width:160px;height:100px"  class="img-thumbnail"> 
+       <img src="{{$Image_group->image}}" alt="{{$Image_group->id}}" style="width:200px;height:100px"  > 
      </div>
 
       @endif
       @endforeach
       <br>
-   {{ $group->Group_desc }}
+      <div style="width:200px;">
+   <h4>{{ $group->Group_desc }}</h4>
+
   </div>
-</div>
+</div></div>
 
 			@endforeach
 			
