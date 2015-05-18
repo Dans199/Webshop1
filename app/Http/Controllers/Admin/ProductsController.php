@@ -33,7 +33,7 @@ class ProductsController extends Controller{
 			,'desc' => 'required'
 			,'cat' => 'required|min:1'
 			,'price' => 'required|numeric|regex:/^\d*(\.\d{2})?$/'
-			,'image' => 'required|mimes:jpeg,bmp,png'
+			,'image' => 'required|image|mimes:jpeg,jpg,png,bmp,gif,svg'
 			);
 
 		 $validator = \Validator::make($input, $rules);
@@ -84,7 +84,7 @@ class ProductsController extends Controller{
 
 		if ($Product->delete())
 		{
-			   return \Redirect::to('/admin/Products')->with('success', "Prece veiksmīgi izdzēsta!");
+			   return \Redirect::back()->with('success', "Prece veiksmīgi izdzēsta!");
 		}
 			else
 			{

@@ -33,7 +33,7 @@ class CategoryController extends Controller{
 		$rules = array('name' => 'required',
 			'desc' => 'required',
 			'group' => 'required|min:1',
-			'image' => 'required|mimes:jpeg,bmp,png');
+			'image' => 'required|image|mimes:jpeg,jpg,png,bmp,gif,svg');
 
 		 $validator = \Validator::make($input, $rules);
                
@@ -79,18 +79,17 @@ class CategoryController extends Controller{
 		foreach ($category->products as $product){
 
 		$product->orderitem()->delete();
+		$product->imageProduct()->delete();
 
 		}
 
     $category->products()->delete();
-
-
-	 $category->imageCategory()->delete();
+	$category->imageCategory()->delete();
 
 
 		if ($category->delete())
 		{
-			   return \Redirect::to('/admin/Categories')->with('success', "Kategorija veiksmīgi izdzēsta!");
+			   return \Redirect::back()->with('success', "Kategorija veiksmīgi izdzēsta!");
 		}
 			else
 			{

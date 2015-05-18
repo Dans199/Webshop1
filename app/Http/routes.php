@@ -126,9 +126,18 @@ Route::group(['middleware' => 'auth'], function()
 
 
 		Route::get('/admin/gallery', array('uses' => 'Admin\GalleryController@showGalleries', 'as' => 'Admin-gallery'));
-		Route::get('/admin/gallery/groups', array('uses' => 'Admin\GalleryController@showgroups', 'as' => 'Admin-gallery-groups'));
-		Route::get('/admin/gallery/Categories', array('uses' => 'Admin\GalleryController@showcategoties', 'as' => 'Admin-gallery-categories'));
 
+		Route::get('/admin/gallery/Groups', array('uses' => 'Admin\GalleryController@showgroups', 'as' => 'Admin-gallery-groups'));
+		Route::get('/admin/gallery/Groups/edit/{id}', array('uses' => 'Admin\GalleryController@groupEdit', 'as' => 'Admin-gallery-groups-Edit'));
+		Route::post('/admin/gallery/Groups/edit/{id}', array('uses' => 'Admin\GalleryController@postgroupEdit'));
+
+		Route::get('/admin/gallery/Categories', array('uses' => 'Admin\GalleryController@showcategories', 'as' => 'Admin-gallery-categories'));
+		Route::get('/admin/gallery/Categories/edit/{id}', array('uses' => 'Admin\GalleryController@categoryEdit', 'as' => 'Admin-gallery-categories-Edit'));
+		Route::post('/admin/gallery/Categories/edit/{id}', array('uses' => 'Admin\GalleryController@postcategoryEdit'));
+
+		Route::get('/admin/gallery/Products', array('uses' => 'Admin\GalleryController@showproducts', 'as' => 'Admin-gallery-products'));
+		Route::get('/admin/gallery/Products/edit/{id}', array('uses' => 'Admin\GalleryController@productsEdit', 'as' => 'Admin-gallery-products-Edit'));
+		Route::post('/admin/gallery/Products/edit/{id}', array('uses' => 'Admin\GalleryController@postproductsEdit'));
 
 
 

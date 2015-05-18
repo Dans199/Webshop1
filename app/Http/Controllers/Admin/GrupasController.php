@@ -7,7 +7,9 @@ use App\User;
 use App\Grupas as Grupa ;
 use App\Category ;
 use App\Products ;
+use App\Image_Category;
 use App\Image_groups ;
+use App\Image_Product;
 
 class GrupasController extends Controller{
 
@@ -32,7 +34,7 @@ class GrupasController extends Controller{
    
 
    		$input = \Input::all();
-		$rules = array('Group_name' => 'required','Group_desc' => 'required', 'image' => 'required|mimes:jpeg,bmp,png');
+		$rules = array('Group_name' => 'required','Group_desc' => 'required', 'image' => 'required|image|mimes:jpeg,jpg,png,bmp,gif,svg');
 		$file = array('image' => \Input::file('image'));
 
 		 $validator = \Validator::make($input, $rules);
@@ -79,9 +81,13 @@ class GrupasController extends Controller{
 	foreach ($category->products as $product){
 
 		$product->orderitem()->delete();
+		$product->imageProduct()->delete();
 
 	}
+
     $category->products()->delete();
+    $category->imageCategory()->delete();
+
     $category->delete();
 	}
 
@@ -96,7 +102,7 @@ class GrupasController extends Controller{
 
 		if ($group->delete())
 		{
-			   return \Redirect::to('/admin/groups')->with('success', "Grupa veiksmīgi izdzēsta!");
+			   return \Redirect::back()->with('success', "Grupa veiksmīgi izdzēsta!");
 		}
 			else
 			{

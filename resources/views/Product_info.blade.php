@@ -2,6 +2,42 @@
 
 @section ('content')
 
+<script  >
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$( document ).ready(function() {
+
+      $("#categories").change(function(){
+              $.post('/admin/Orders/items/products/'+ $(this).val(), function(response){
+                console.log(response);
+                  if(response.success)
+                  {
+                      var Products = $('#products').empty();
+
+                     
+                      $.each(response.products, function(i, products){
+                        console.log(i);
+                          $('<option/>', {
+                              value:products.id,
+                              text:products.title
+                          }).appendTo(Products);
+
+                      })
+                  }
+              }, 'json');
+      });
+
+});
+
+
+
+</script>
+
   <div class="row">
   <div class="col-md-8 col-md-offset-2">
 

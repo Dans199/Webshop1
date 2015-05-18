@@ -24,7 +24,7 @@
 
 
    	<div class="list-group">
-	 	<a href="#" class="list-group-item active">
+	 	<a href="{{ URL::route('Admin-gallery-products') }}" class="list-group-item active">
 	    	<h4 class="list-group-item-heading">Produkti</h4>
 	    		<p class="list-group-item-text">Šajā sadaļā jūs variet apskatīt visas esošās bildes Produktu sadaļā</p>
 	  	</a>
