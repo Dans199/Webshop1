@@ -92,7 +92,7 @@ class GalleryController extends Controller{
     {
 		 $category=Category::find($id);
 		 $Image_Category=Image_Category::where('category_id', $id)->first();
-	   	return view('Admin/Gallery.Gallery_product_edit')->with('Image_Category',$Image_Category)->with('category',$category);
+	   	return view('Admin/Gallery.Gallery_category_edit')->with('Image_Category',$Image_Category)->with('category',$category);
   	}
 
   	  	public function postcategoryEdit($id)
@@ -137,7 +137,7 @@ class GalleryController extends Controller{
     {
 		 $Products=Products::find($id);
 		 $Image_Product=Image_Product::where('product_id', $id)->first();
-	   	return view('Admin/Gallery.Gallery_product_edit')->with('Image_Product',$Image_Product)->with('Products',$Products);
+	   	 return view('Admin/Gallery.Gallery_product_edit')->with('Image_Product',$Image_Product)->with('Products',$Products);
   	}
 
   	public function postproductsEdit($id)

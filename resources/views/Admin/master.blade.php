@@ -38,6 +38,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="{{ URL::route('Admin') }}">Admiņa panelis</a></li>
+					<li><a href="{{ URL::route('Admin-Specials') }}">Akcijas</a></li>
 					<li><a href="{{ URL::route('Admin-grupas') }}">Grupas</a></li>
 					<li><a href="{{ URL::route('Admin-category') }}">Kategorijas</a></li>
 					<li><a href="{{ URL::route('Admin-Products') }}">Produkti</a></li>

@@ -6,12 +6,23 @@
   <div class="col-md-8 col-md-offset-2">
 
 
+
+
 	@if(Session::has('success'))
 		<div class="alert alert-success">{{ Session::get('success') }}</div>
 	@elseif (Session::has('fail'))
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif
   <h4>Kategorijas</h4>
+
+
+    <div class="clearfix">
+    <ol class="breadcrumb pull-left">
+      <li><a href="{{ URL::route('veikals') }}">Veikals</a></li>
+      <li class="active">{{$group->Group_name}}</li>
+
+    </ol>
+  </div>
 
     		@foreach($categorys as $category)
 

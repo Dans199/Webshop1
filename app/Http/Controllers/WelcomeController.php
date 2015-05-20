@@ -1,4 +1,6 @@
 <?php namespace App\Http\Controllers;
+use App\Special;
+use App\images_Specials;
 
 class WelcomeController extends Controller {
 
@@ -30,7 +32,13 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('hello');
+		$Specials = Special::Latest()->get();
+		$images_Specials= images_Specials::Latest()->get();
+
+		$dt = new \DateTime();
+		$currentTime=$dt->format('Y-m-d H:i:s');
+
+		return view('hello')->with('Specials', $Specials)->with('images_Specials', $images_Specials)->with('currentTime', $currentTime);
 	}
 
 }
