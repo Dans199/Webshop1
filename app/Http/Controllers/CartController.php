@@ -24,9 +24,9 @@ class CartController extends Controller {
 		 $price = Product::where('id', $id)->pluck('price');
 
 
-		\Cart::add( $id, $name, 1 ,$price, array('size' => 'large'));
+		\Cart::add( $id, $name, 1 ,$price);
 
-		return \Redirect::route('cart');
+	   return response()->json( ['success' => true, 'name'=>$name]);
 
 	}
 

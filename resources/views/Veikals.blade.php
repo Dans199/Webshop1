@@ -27,7 +27,7 @@
       @foreach($Image_groups as $Image_group)
       @if($group->id == $Image_group->grupas_ID)
       <div>
-       <img src="{{$Image_group->image}}" alt="{{$Image_group->id}}" style="width:200px;height:100px"  > 
+       <img src="{{asset($Image_group->image)}}" alt="{{$Image_group->id}}" style="width:200px;height:100px"  > 
      </div>
 
       @endif
