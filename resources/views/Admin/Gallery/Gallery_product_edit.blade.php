@@ -8,7 +8,7 @@
 
 
           <h4 > Galerijas izmaiņu veikšana!</h4>
-                <h5> {{ $Products->title }} </h5>
+                <h5>{{$Products->title}}</h5>
 
 
           @if (count($errors) > 0)

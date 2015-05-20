@@ -40,7 +40,6 @@ Route::controllers([
 ]);
 
 
-
 Route::group(array('prefix' => '/veikls'), function()
 {
 	Route::get('/category/{id}', array('uses' => 'VeikalsController@category', 'as' => 'shop-category'));
@@ -62,22 +61,12 @@ Route::group(['middleware' => 'auth'], function()
 
 		Route::get('/order/done', array('uses' => 'OrderController@getOrderDone', 'as' => 'cart-order-done'));
 
-		Route::post('/cart/Add/{id}', array('uses' => 'CartController@addCart'));
-
 
 
 });
 
 	Route::group(array('before' => 'admin'), function()
-	{	
-
-		Route::get('/admin/specials', array('uses' => 'Admin\SpecialsController@showSpecials', 'as' => 'Admin-Specials'));
-		Route::get('/admin/specials/add', array('uses' => 'Admin\SpecialsController@AddSpecials', 'as' => 'Admin-Specials-add'));
-		Route::post('/admin/specials/add', array('uses' => 'Admin\SpecialsController@postSpecials'));
-		Route::get('/admin/specials/delete/{id}', array('uses' => 'Admin\SpecialsController@DeleteSpecials', 'as' => 'Admin-Specials-delete'));
-		Route::get('/admin/specials/edit/{id}', array('uses' => 'Admin\SpecialsController@EditSpecials', 'as' => 'Admin-special-edit'));
-		Route::post('/admin/specials/edit/{id}', array('uses' => 'Admin\SpecialsController@postEditSpecials'));
-
+	{
 		Route::get('/admin', array('uses' => 'Admin\HelloController@showPanel', 'as' => 'Admin'));
 
 		Route::get('/admin/groups', array('uses' => 'Admin\GrupasController@showGroups', 'as' => 'Admin-grupas'));
@@ -135,6 +124,7 @@ Route::group(['middleware' => 'auth'], function()
 		Route::post('/admin/Orders/items/category/{id}', array('uses' => 'Admin\OrdersItemsController@updateCategoryOption'));
 
 
+
 		Route::get('/admin/gallery', array('uses' => 'Admin\GalleryController@showGalleries', 'as' => 'Admin-gallery'));
 
 		Route::get('/admin/gallery/Groups', array('uses' => 'Admin\GalleryController@showgroups', 'as' => 'Admin-gallery-groups'));
@@ -152,4 +142,3 @@ Route::group(['middleware' => 'auth'], function()
 
 
 	});
-	
