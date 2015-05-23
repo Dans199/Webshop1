@@ -5,17 +5,17 @@
   <div class="row">
   <div class="col-md-8 col-md-offset-2">
 
-              <h4 >Lietotāju informācija !</h4>
+              <h4 >User information</h4>
 
-           Lietotāja Vārds:<strong>{{ $User->name }}</strong><br>
-           Lietotāja Ē-pasts:<strong> {{$User->email}}</strong> <br>
-           Vai lietotājs ir Adminis(1:ir|0:nav):<strong>{{ $User->isAdmin}}</strong> <br>
+           User name:<strong>{{ $User->name }}</strong><br>
+           User E-mail:<strong> {{$User->email}}</strong> <br>
+           Is user Admin(1:is|0:isn't):<strong>{{ $User->isAdmin}}</strong> <br>
 
-    			<h4 >Lietotāja admiņa tiesības!</h4>
+    			<h4 >Edit user admin privileges!</h4>
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> Radās problēma ar jūsu ievadi<br><br>
+              <strong>Whoops!</strong> There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -29,15 +29,15 @@
 
     
     <select name="isAdmin">
-                <option value="">Vai ir admins!</option>
-                <option value="0">Nav Admins</option>
-                <option value="1">Ir Admins</option>
+                <option value="">Set admin priviliges!</option>
+                <option value="0">Is Admins</option>
+                <option value="1">Isn't Admins</option>
     </select> 
     <br />
     <br />
 
 
-    {!! Form::submit('Izmainīt admiņa tiesības') !!}
+    {!! Form::submit('Edit user admin privileges') !!}
 
     </div>
    </div>

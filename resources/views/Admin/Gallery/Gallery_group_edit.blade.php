@@ -7,13 +7,13 @@
 
 
 
-          <h4 > Galerijas izmaiņu veikšana!</h4>
-                <h5>{{$group->Group_name}}</h5>
+          <h4 >Edit group image!</h4>
+           <h5><strong>Group name:</strong>{{$group->Group_name}}</h5>
 
 
           @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> Radās problēma ar jūsu ievadi<br><br>
+              <strong>Whoops!</strong>There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -32,10 +32,10 @@
 
     
 
-        Izvēlies bildi!<br />
+         Choose Image!<br />
         {!! Form::file('image') !!}<br />
 
-        {!! Form::submit('Izmainīt bildi') !!}
+         {!! Form::submit('Edit image') !!}
 
     </div>
    </div>

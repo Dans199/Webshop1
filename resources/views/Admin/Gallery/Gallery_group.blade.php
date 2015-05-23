@@ -4,7 +4,7 @@
   <div class="row">
   <div class="col-md-8 col-md-offset-2">
 
-   <h3><strong>Galerija: </strong>Grupas</h3>
+   <h3><strong>Gallery: </strong>Groups</h3>
    <br>
    <br>
     @if(Session::has('success'))

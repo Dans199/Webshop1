@@ -3,7 +3,7 @@
 @section ('content')
 
   <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2" style="border-right: thick double #98bf21;border-left: thick double #98bf21;">
 
 
 	@if(Session::has('success'))
@@ -12,7 +12,7 @@
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif
 
-    			<h4 >Preču Grupu izvelne</h4>
+    			<h4 >Product Groups</h4>
 
           
 

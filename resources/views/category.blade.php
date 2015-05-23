@@ -3,7 +3,7 @@
 @section ('content')
 
   <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2" style="border-right: thick double #98bf21;border-left: thick double #98bf21;">
 
 
 
@@ -13,12 +13,12 @@
 	@elseif (Session::has('fail'))
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif
-  <h4>Kategorijas</h4>
+  <h4>Categories</h4>
 
 
     <div class="clearfix">
     <ol class="breadcrumb pull-left">
-      <li><a href="{{ URL::route('veikals') }}">Veikals</a></li>
+      <li><a href="{{ URL::route('veikals') }}">Shop</a></li>
       <li class="active">{{$group->Group_name}}</li>
 
     </ol>

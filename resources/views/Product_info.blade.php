@@ -55,16 +55,16 @@ $( document ).ready(function(){
       <!-- dialog body -->
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-       Produkts pievienots Grozam!
+       The product is added to the basket.
       </div>
       <!-- dialog buttons -->
-      <div class="modal-footer">  <button style="float:left" type="button" class="btn btn-info btn-sm"  data-dismiss="modal">Turpināt iepirkties!</button><a class="btn btn-success btn-sm" href="/cart">Doties uz iepirkuma grozu !</a></div>
+      <div class="modal-footer">  <button style="float:left" type="button" class="btn btn-info btn-sm"  data-dismiss="modal">Continue shopping!</button><a class="btn btn-success btn-sm" href="/cart">Shopping Cart</a></div>
     </div>
   </div>
 </div>
 
   <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2" style="border-right: thick double #98bf21;border-left: thick double #98bf21;">
 
 
 	@if(Session::has('success'))
@@ -74,10 +74,10 @@ $( document ).ready(function(){
 	@endif
 
 
-<h3>Produkta Informācija!</h3>
+<h3>Product Information!</h3>
   <div class="clearfix">
     <ol class="breadcrumb pull-left">
-      <li><a href="{{ URL::route('veikals') }}">Veikals</a></li>
+      <li><a href="{{ URL::route('veikals') }}">Shop</a></li>
       <li><a href="{{ URL::route('shop-category',$group->id) }}">{{$group->Group_name}} </a></li>
       <li><a href="{{ URL::route('shop-product',$category->id) }}">{{$category->name}} </a></li>
       <li class="active">{{ $product->title }}</li>
@@ -89,23 +89,23 @@ $( document ).ready(function(){
    <img src="{{asset($Image_Product->image)}}" alt="{{$Image_Product->id}}"  width="300" height="100"  class="img-thumbnail"> 
 <div>
  <div>
-    <h4><strong>Preces Nosaukums:</strong> {{ $product->title }}</h4>
+    <h4><strong>Product name:</strong> {{ $product->title }}</h4>
       <div>
-     <strong>Apraksts:</strong> <br>
+     <strong>Description:</strong> <br>
      {{ $product->description }}
  </div>
   </div>
 
 <div >
-    <strong>Cena: </strong>
+    <strong>Price: </strong>
     € {{ $product->price }} 
     <br>  <br>
     @if (!Auth::guest())
-     <button type="button" id="{{$product->id}}"  class="swag btn btn-success btn-sm">Pievienot Grozam!</button>
+     <button type="button" id="{{$product->id}}"  class="swag btn btn-success btn-sm">Add to cart!</button>
      @else
-     Lai iepirktos jums nepieciešams autorizēties!
-        <a href="/auth/login">autorizēties!</a>
-            <a href="/auth/register">Reģistrēties!</a></li>
+     You have to be loged in to add items to cart!
+        <a href="/auth/login">Log in!</a>
+            <a href="/auth/register">Register!</a></li>
      @endif
   </div>
 

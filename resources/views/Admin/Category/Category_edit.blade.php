@@ -7,11 +7,11 @@
 
 
 
-    			<h4 >Kategorijas izmaiņas!</h4>
+    			<h4 >Edit category!</h4>
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> Radās problēma ar jūsu ievadi<br><br>
+              <strong>Whoops!</strong> There were some problems with your input!<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -22,10 +22,12 @@
 
    {!! Form::open(['files' => true])!!}
         <label for="name">
-            Kategorijas Nosaukums<br />
+            Category name<br />
             {!! Form::text('name', $name, ['id' => 'name']) !!}
         </label>
         <br />
+
+        Choose group:<br>
          <select name="group">
         
             @foreach($groups as $key => $value)
@@ -45,15 +47,15 @@
          <br />
 
         <label for="desc">
-            Apraksts<br />
+            Description:<br />
             {!! Form::textarea('desc', $desc, ['id' => 'desc']) !!}
         </label>
         <br />
          <img src="{{asset($image)}}"  style="width:150px;height:100px"  class="img-thumbnail"> 
           <br/>
-            Izvēlies bildi!<br />
+            Choose image for category! <br/>
         {!! Form::file('image') !!}<br />
-        {!! Form::submit('Izmainīt Kategoriju') !!}
+        {!! Form::submit('Edit category') !!}
 
     </div>
    </div>

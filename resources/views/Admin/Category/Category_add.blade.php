@@ -7,11 +7,11 @@
 
 
 
-    			<h4 >Jaunas Kategorijas Pievienošana!</h4>
+    			<h4 >Add new category!</h4>
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> Radās problēma ar jūsu ievadi<br><br>
+              <strong>Whoops!</strong> There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -22,12 +22,12 @@
 
     {!! Form::open(array('url'=>'admin/Categories/add','method'=>'POST', 'files'=>true)) !!}
         <label for="name">
-            Kategorijas Nosaukums<br />
+            Category name<br />
             {!! Form::text('name', null, ['id' => 'name']) !!}
         </label>
         <br />
          <select name="group">
-          <option value="">Izvēlieties Grupu!</option>
+          <option value="">Choose group!</option>
             @foreach($groups as $key => $value)
 
               <option value="{{ $value->id }}">{{ $value->Group_name }}</option>
@@ -37,20 +37,20 @@
          <br />
 
         <label for="desc">
-            Apraksts<br />
+            Description:<br />
             {!! Form::textarea('desc', null, ['id' => 'desc']) !!}
         </label>
         <br />
 
         <div class="control-group">
           <div class="controls">
-            Izvēlieties bildi kategorijai! <br/>
+            Choose image for category! <br/>
           {!! Form::file('image') !!}
           <br/>
 
              </div>
              </div>
-        {!! Form::submit('Pievienot Kategoriju') !!}
+        {!! Form::submit('Add category!') !!}
 
     </div>
    </div>

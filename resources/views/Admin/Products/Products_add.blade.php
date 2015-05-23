@@ -7,11 +7,11 @@
 
 
 
-    			<h4 >Jaunas Produkta Pievienošana!</h4>
+    			<h4 >Add new Product!</h4>
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> Radās problēma ar jūsu ievadi<br><br>
+              <strong>Whoops!</strong> There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -22,11 +22,11 @@
 
     {!! Form::open(array('url'=>'admin/Products/add','method'=>'POST', 'files'=>true)) !!}
         <label for="name">
-            Produkta Nosaukums<br />
+            Product name<br />
             {!! Form::text('name', null, ['id' => 'name']) !!}
         </label>
         <br />
-           Izvelieties Kategoriju:<br>
+           Choose Category:<br>
          <select name="cat">
           <option value="">Izvēlieties Kategoriju!</option>
             @foreach($Categories as $key => $value)
@@ -38,23 +38,23 @@
          <br />
 
         <label for="desc">
-            Apraksts<br />
+            Description:<br />
             {!! Form::textarea('desc', null, ['id' => 'desc']) !!}
         </label>
         <br />
         <label for="desired_price">
-           Produkta Cena<br />
+           Price:<br />
             {!! Form::text('price', null, ['id' => 'price']) !!}
         </label>
         <br />
 
         <div class="control-group">
           <div class="controls">
-            Izvēlieties bildi Produktam! <br/>
+            Choose image for product! <br/>
           {!! Form::file('image') !!}
           <br/>
 
-        {!! Form::submit('Pievienot Produktu!') !!}
+        {!! Form::submit('Add Product') !!}
 
     </div>
    </div>

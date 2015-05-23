@@ -14,7 +14,7 @@
 
   <div  style="padding: 10px 10px;float:left;width:auto;margin: 10px;border-right: thick double #98bf21;border-left: thick double #98bf21;">
 
-     <h2>Karstie piedāvājumi!</h2>
+     <h2>Hot offerings</h2>
      <br>
   
 
@@ -33,7 +33,7 @@
       @endif
       @endforeach
       <div style="width:320px;">
-  <h4>Akcija beidzas: <strong>{{ $Special->end_time }}</strong><h4>
+  <h4>Hot offer ends: <strong>{{ $Special->end_time }}</strong><h4>
   </div>
 </div></div>
 <br>
@@ -45,19 +45,19 @@
 
 
   <div  style="padding: 10px 10px;float:left;width:auto;border-right: thick double #98bf21;">
-      <h2>Informācija par kompāniju!</h2>
+      <h2>Information about the company.</h2>
       <br/>
 
             <img width="460" height="215" src="upload/2.jpg" alt="Pro gaming pic"> 
 
-     <h2>Sveicināti internetveikalā TSG  </h2>
+     <h2>Welcome to the online shop TSG !</h2>
      <br>
-      <p>Pie mums var  iegādāties visa  vaida datoru<br> preces par izdevīgām cenām!</p>
+      <p>We can offer all types of computer goods at bargain prices. </p>
       <br>
 
       <br> 
       <br>
-      <h4> Lētu spēļu datoru var salikt  kopā jebkurš no mums:) </h4>
+      <h4> Cheap gaming computer can be put together by any of us:)</h4><br>
         <iframe width="460" height="215" src="https://www.youtube.com/embed/rQtUWjgxrd8" frameborder="0" allowfullscreen></iframe>
       <p>This web page was created by Dans Grīnšteins (dg13030). :) !!!</p>
 

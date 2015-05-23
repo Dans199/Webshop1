@@ -12,18 +12,18 @@
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif
 
-    			<h4 >Grupas Datubāzē!</h4>
-    			Pievienot Jaunu grupu: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-grupas-add') }}"></a>
+    			<h4 >Groups:</h4>
+    			Add new Group: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-grupas-add') }}"></a>
 
 	<table class="table table-striped table-bordered">
     <thead>
         <tr>
         	<td>ID</td>
-            <td>Grupas Nosaukums</td>
-            <td>Apraksts</td>
-            <td>Izveidots</td>
-            <td>Izmainīts</td>
-            <td>Iespējas</td>
+            <td>Group Name</td>
+            <td>Description</td>
+            <td>Created</td>
+            <td>Updated</td>
+            <td>Options</td>
 
         </tr>
     </thead>

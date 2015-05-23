@@ -4,9 +4,9 @@
   <div class="row">
   <div class="col-md-8 col-md-offset-2">
 
-   <h1>Sveicināts Admini!</h1>
+   <h1>Welcome admin!</h1>
 
-   <strong>Piereģistrēto lietotāju skaits</strong>:{{$CurrentUserCount}}
+   <strong>Current user count:</strong>:{{$CurrentUserCount}}
 
 			
     </div>

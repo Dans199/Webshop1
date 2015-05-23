@@ -12,20 +12,20 @@
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif
 
-    			<h4 >Produktu Datubāzē!</h4>
-    			Pievienot Jaunu Produktu: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Products-add') }}"></a>
+    			<h4 >Products</h4>
+    			Add new Product: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Products-add') }}"></a>
 
 	<table class="table table-striped table-bordered">
     <thead>
         <tr>
         	<td>ID</td>
-            <td>Nosaukums</td>
-            <td>Apraksts</td>
-            <td>Kategorijas ID</td>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Category ID</td>
             <td>price</td>
-            <td>Izveidots</td>
-            <td>Izmainīts</td>
-            <td>Iespējas</td>
+            <td>Created</td>
+            <td>Updated</td>
+            <td>Options</td>
 
         </tr>
     </thead>

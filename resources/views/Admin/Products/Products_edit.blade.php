@@ -4,11 +4,11 @@
 
   <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    			<h4 >Produkta izmaiņas!</h4>
+    			<h4 >Product edit!</h4>
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> Radās problēma ar jūsu ievadi<br><br>
+              <strong>Whoops!</strong> There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -19,11 +19,11 @@
 
       {!! Form::open(['files' => true]) !!}
         <label for="name">
-            Produkta Nosaukums<br />
+             Product name:<br />
             {!! Form::text('name', $name, ['id' => 'name']) !!}
         </label>
         <br />
-        Izvelieties Kategoriju:<br>
+         Choose Category:<br>
          <select name="cat">
             @foreach($Categories as $key => $value)
             @if($value->id==$cat)
@@ -42,22 +42,22 @@
          <br />
 
         <label for="desc">
-            Apraksts<br />
+             Description:<br />
             {!! Form::textarea('desc', $desc, ['id' => 'desc']) !!}
         </label>
         <br />
         <label for="desired_price">
-           Produkta Cena<br />
+           Price:<br />
             {!! Form::text('price', $price, ['id' => 'price']) !!}
         </label>
         <br />
           <img src="{{asset($image)}}"  style="width:150px;height:100px"  class="img-thumbnail"> 
           <br/>
 
-        Izvēlies bildi!<br />
+        Choose image for product! <br />
         {!! Form::file('image')!!}<br />
 
-        {!! Form::submit('Izmainīt grupu') !!}
+        {!! Form::submit('Edit Product') !!}
 
     </div>
    </div>

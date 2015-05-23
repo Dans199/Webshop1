@@ -64,7 +64,7 @@ class CategoryController extends Controller{
 	                          $Image_Category->save();
 						}
 
-                          return \Redirect::to('/admin/Categories');
+                          return \Redirect::to('/admin/Categories')->with('success', "successfully added!");
      
                 } else {
                         return \Redirect::to('/admin/Categories/add')->withErrors($validator);
@@ -89,11 +89,11 @@ class CategoryController extends Controller{
 
 		if ($category->delete())
 		{
-			   return \Redirect::back()->with('success', "Kategorija veiksmīgi izdzēsta!");
+			   return \Redirect::back()->with('success', "successfully Deleted");
 		}
 			else
 			{
-				   return \Redirect::to('/admin/Categories')->with('fail', "An error occured while deleting the group.");
+				   return \Redirect::to('/admin/Categories')->with('fail', "An error occured while deleting.");
 			}
 
 
@@ -156,7 +156,7 @@ class CategoryController extends Controller{
 
 
 
-			return \Redirect::to('/admin/Categories')->with('success', "Kategorija veiksmīgi izmainīta");
+			return \Redirect::to('/admin/Categories')->with('success', "Successfully Updated");
 		}
 
 		else

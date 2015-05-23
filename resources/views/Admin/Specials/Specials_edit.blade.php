@@ -7,11 +7,11 @@
 
 
 
-    			<h4 >Akcijas izmaiņas!</h4>
+    			<h4 >Special edit!</h4>
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> Radās problēma ar jūsu ievadi<br><br>
+              <strong>Whoops!</strong>There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -23,20 +23,20 @@
 
    {!! Form::open(['files' => true])!!}
       
-        Akcijas Nosaukums<br />
+       Special name:<br />
         {!! Form::text('name', $name, ['id' => 'name']) !!}
         <br />
         
-        Apraksts<br />
+       Special ends at:<br />
         {!! Form::input('date','end_time' , $end_time, ['placeholder' => 'yyyy-mm-dd', 'id' => 'end_time']) !!}
  
         <br />
         <br />
          <img src="{{asset($image)}}"  style="width:150px;height:100px"  class="img-thumbnail"> 
           <br/>
-            Izvēlies bildi!<br />
+            Choose image for special:<br />
         {!! Form::file('image') !!}<br />
-        {!! Form::submit('Izmainīt Kategoriju') !!}
+        {!! Form::submit('Edit special ') !!}
 
     </div>
    </div>

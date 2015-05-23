@@ -12,28 +12,28 @@
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif 
 
-                <h4 >Pasūtītījuma informācija !</h4>
+                <h4 >Order information !</h4>
                 <div>
-                Pasūtītāja vārds: <strong>{{ $Order->name}}</strong><br />
-                Pasūtītāja Adrese: <strong>{{ $Order->address}}</strong><br />
-                Pasūtītāja pasta indeks: <strong>{{ $Order->p_index}}</strong><br />
-                Pasūtītāja telefons: <strong>{{ $Order->tel}}</strong><br />
+                Client Name: <strong>{{ $Order->name}}</strong><br />
+                Client Address: <strong>{{ $Order->address}}</strong><br />
+                Client Postal index: <strong>{{ $Order->p_index}}</strong><br />
+                Client Phone number: <strong>{{ $Order->tel}}</strong><br />
                 </div>
               
-                <h4 >Pasūtītījuma produkti !</h4>
-                Pievienot manūali produktus pasūtijumama!: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Orders-Items-add' ,$id) }}"></a>
+                <h4 >Ordered products!</h4>
+               Add new product to order: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Orders-Items-add' ,$id) }}"></a>
 
 	<table class="table table-striped table-bordered">
     <thead>
         <tr>
         	<td>ID</td>
-            <td>Preces nosaukums</td>
-            <td>Daudzums</td>
-            <td>Cena</td>
-            <td>Produkta ID</td>
-            <td>Pasūtijuma ID</td>
-            <td>Izmainīts</td>
-            <td>Iespējas</td>
+            <td>Product name</td>
+            <td>Quantity</td>
+            <td>Price</td>
+            <td>Product ID</td>
+            <td>Order ID</td>
+            <td>Updated</td>
+            <td>Option</td>
 
         </tr>
     </thead>

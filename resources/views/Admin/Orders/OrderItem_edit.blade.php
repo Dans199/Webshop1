@@ -7,23 +7,23 @@
   <div class="col-md-8 col-md-offset-2">
 
 
-    <h4 >Preces informācija !</h4>
+    <h4 >Product information !</h4>
 
             @foreach($Products as $product)
             @if($product->id==$OrderItem->product_id)
-            Preces Nosaukums:<strong>{{ $product->title }}</strong><br>
+            Product name:<strong>{{ $product->title }}</strong><br>
             @endif
             @endforeach
-            Preces Daudzums:<strong> {{$OrderItem->quantity}}</strong> <br>
-            Preces Cena:<strong>{{ $OrderItem->cena}}</strong> <br>
-            Preces Produkta ID:<strong>{{ $OrderItem->product_id}}</strong><br>
-            Preces Pasūtijuma ID:<strong>{{ $OrderItem->order_id}}</strong><br>
+            Product Quantity:<strong> {{$OrderItem->quantity}}</strong> <br>
+            Product Price:<strong>{{ $OrderItem->cena}}</strong> <br>
+            Product Product ID:<strong>{{ $OrderItem->product_id}}</strong><br>
+            Product Order ID:<strong>{{ $OrderItem->order_id}}</strong><br>
     
-    			<h4 >Izmainīt cenu vai daudzumu !</h4>
+    			<h4 >Change product price and quantity !</h4>
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> Radās problēma ar jūsu ievadi<br><br>
+              <strong>Whoops!</strong>There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -38,13 +38,13 @@
 
 
            <label for="quantity">
-            Preces Daudzums <br>
+            Product quantity: <br>
             {!! Form::text('quantity', $quantity, ['id' => 'quantity']) !!}
         </label>
         <br />
 
              <label for="quantity">
-            Preces Cena <br>
+            Product price: <br>
             {!! Form::text('cena', $cena, ['id' => 'cena']) !!}
         </label>
         <br />
@@ -53,7 +53,7 @@
 
 
 
-        {!! Form::submit('Pievienot Pasūtījumu') !!}
+        {!! Form::submit('Edit!') !!}
 
     </div>
    </div>

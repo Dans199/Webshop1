@@ -4,7 +4,7 @@
   <div class="row">
   <div class="col-md-8 col-md-offset-2">
 
-   <h3><strong>Galerija: </strong>Produkti</h3>
+   <h3><strong>Gallery: </strong>Products</h3>
    <br>
    <br>
 

@@ -67,11 +67,11 @@ $( document ).ready(function() {
 
 
 
-    			<h4 >Pievienot Produktus !</h4>
+    			<h4 >Add product to order !</h4>
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> Radās problēma ar jūsu ievadi<br><br>
+              <strong>Whoops!</strong>There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -84,9 +84,9 @@ $( document ).ready(function() {
     <div style="  width: 700px;float:left;">
 
 
-               Izvēlieties Grupu: <br>
+               Choose Group: <br>
              <select name="Group" id="Group" style="width:170px;">
-          <option value="">Izvēlieties Grupu!</option>
+          <option value="">Choose Group!</option>
           @foreach($Group as $key => $value)
          
               <option value="{{ $value->id }}" onclick="loadProducts( $value->id')" >{{ $value->Group_name }}</option>
@@ -95,22 +95,22 @@ $( document ).ready(function() {
          </select> 
          <br /><br />
 
-          Izvēlieties Kategoriju:<br />
+          Choose Category:<br />
         <select name="categories" id="categories" style="width:170px;">
-          <option value="">Izvēlieties Kategoriju!</option>
+          <option value="">Choose Category!</option>
               <option value="{{ $value->id }}" onclick="loadProducts( $value->id')" >{{ $value->name }}</option>
          </select> 
          <br /><br />
   
-              Izvēlieties Produktu:<br />
+              Choose Product:<br />
         <select name="products" id="products" style="width:170px;">
-          <option value="">Izvēlieties Produktu!</option>
+          <option value=""> Choose Product!</option>
      
          </select> 
          <br /><br />
 
            <label for="quantity">
-            Preces Daudzums <br>
+            Quantity <br>
             {!! Form::text('quantity', null, ['id' => 'name']) !!}
         </label>
         <br /><br />
@@ -123,7 +123,7 @@ $( document ).ready(function() {
         <br />
 
 
-        {!! Form::submit('Pievienot Pasūtījumam produktu') !!}
+        {!! Form::submit('Add product') !!}
 
     </div>
    </div>

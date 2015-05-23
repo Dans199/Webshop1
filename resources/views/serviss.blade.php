@@ -3,25 +3,25 @@
 @section ('content')
 
   <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2" style="border-right: thick double #98bf21;border-left: thick double #98bf21;">
 
   	        <img width="460" height="215" src="upload/5.jpg"> 
 
 			
-			 <h2>Serviss:</h2>
+			 <h2>Service:</h2>
 
        <p>
-       <strong>Garantijas serviss:</strong> Visām elektronsikām precēm virs 30 euro garantija 2 gadi.<br>
-       Garantijas serviss ir  bez maksas. Vidējais labošanas  laiks  1-3 nedēļas atkarībā no problēmas.
+       <strong>Warranty Service:</strong> All elektronsikām goods over 30 euro guarantee for 2 years.<br>
+       Warranty service is free of charge. Mean repair time 1-3 weeks depending on the problem.
        <br>
        <br>
-        <strong>Datoru un citu  iekartu serviss :</strong> Veicam datoru tirīšanu, diognostiku, programmatūrs uzstādi,<br>
-        detaļu nomaiņu un visu citu elektronisku iekārtu labošanu.
+        <strong>Computers and other iekartu Service: </strong>Computer cleanup,diognostiku, software install,<br>
+        parts replacement and repair of other electronic equipment.
         <br>
-         <strong> Servisa Kontakti:</strong>
+         <strong> Service Contacts:</strong>
 
-         A. Čaka iela 91-10 Rīga, Ieeja no pagalma. 
-         <br>Servisa darba laiks: 9 - 19. tālr.: 67570758, 27074834 dap@dap.lv 
+         A. Čaka iela 91-10 Rīga.
+         <br>Service Hours: 9 - 19. tel: 67570758, 27074834 dap@dap.lv 
 
 
        </p>

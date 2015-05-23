@@ -8,6 +8,8 @@ use App\Products ;
 use App\Image_Category;
 use App\Image_groups ;
 use App\Image_Product;
+use App\Special;
+use App\images_Specials;
 
 class GalleryController extends Controller{
 
@@ -41,6 +43,15 @@ class GalleryController extends Controller{
 	   	return view('Admin/Gallery.Gallery_product')->with('Image_Product',$Image_Product)->with('Products',$Products);
   	}
 
+    public function showSpecials()
+    {
+	    $specials=Special::latest()->paginate(10);
+	    $images_Specials=images_Specials::latest()->paginate(10);
+	   	return view('Admin/Gallery.Gallery_special')->with('images_Specials',$images_Specials)->with('specials',$specials);
+  	}
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   	public function groupEdit($id)
     {
 		$group= Grupa::find($id);
@@ -55,7 +66,7 @@ class GalleryController extends Controller{
 	    $Image_groups=Image_groups::where('grupas_ID', $id)->first();
 
    		$input = \Input::all();
-		 $rules = array('image' => 'mimes:jpeg,bmp,png');
+		 $rules = array('image' => 'required|mimes:jpeg,bmp,png');
 
 		 $validator = \Validator::make($input, $rules);
                
@@ -77,7 +88,7 @@ class GalleryController extends Controller{
 	                          $Image_groups->save();
 						}
 
-                          return \Redirect::to('/admin/gallery/Groups')->with('success', "Izmaiņas veiktas!");
+                          return \Redirect::to('/admin/gallery/Groups')->with('success', "Successfully Updated");
 
 
      
@@ -101,7 +112,7 @@ class GalleryController extends Controller{
 	     $Image_Category=Image_Category::where('category_id', $id)->first();
 
    		$input = \Input::all();
-		 $rules = array('image' => 'mimes:jpeg,bmp,png');
+		 $rules = array('image' => 'required|mimes:jpeg,bmp,png');
 
 		 $validator = \Validator::make($input, $rules);
                
@@ -123,7 +134,7 @@ class GalleryController extends Controller{
 	                          $Image_Category->save();
 						}
 
-                          return \Redirect::to('/admin/gallery/Categories')->with('success', "Izmaiņas veiktas!");
+                          return \Redirect::to('/admin/gallery/Categories')->with('success', "Successfully Updated");
 
 
      
@@ -146,7 +157,7 @@ class GalleryController extends Controller{
 	    $Image_Product=Image_Product::where('product_id', $id)->first();
 
    		$input = \Input::all();
-		 $rules = array('image' => 'mimes:jpeg,bmp,png');
+		 $rules = array('image' => 'required|mimes:jpeg,bmp,png');
 
 		 $validator = \Validator::make($input, $rules);
                
@@ -168,7 +179,55 @@ class GalleryController extends Controller{
 	                          $Image_Product->save();
 						}
 
-                          return \Redirect::to('/admin/gallery/Products')->with('success', "Izmaiņas veiktas!");
+                          return \Redirect::to('/admin/gallery/Products')->with('success', "Successfully Updated");
+
+
+     
+                } else {
+                        return \Redirect::back()->withErrors($validator);
+                }
+
+            }
+
+
+    public function specialsEdit($id)
+    {
+	
+		$specials=Special::find($id);
+	    $images_Specials=images_Specials::where('special_id', $id)->first();
+
+	   	 return view('Admin/Gallery.Gallery_special_edit')->with('images_Specials',$images_Specials)->with('specials',$specials);
+  	}
+
+  	  	public function postspecialsEdit($id)
+    {
+
+	    $images_Specials=images_Specials::where('special_id', $id)->first();
+
+   		$input = \Input::all();
+		 $rules = array('image' => 'required|mimes:jpeg,bmp,png');
+
+		 $validator = \Validator::make($input, $rules);
+               
+                if ($validator->passes())
+                {
+
+                        if (\Input::hasFile('image'))
+                        {
+						      $destinationPath = 'upload/Special'; // upload path
+						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
+						      $fileName ='Special_'.rand(11111,99999).'.'.$extension; // renameing image
+						      \Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+						      // sending back with message
+						      \Session::flash('success', 'Upload successfully');
+
+						      $path = "upload/Special/".$fileName;
+						      
+	                           $images_Specials->image =$path;
+	                           $images_Specials->save();
+						}
+
+                          return \Redirect::to('/admin/gallery/Specials')->with('success', "Successfully Updated");
 
 
      

@@ -12,19 +12,19 @@
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif
 
-    			<h4 >Kategorijas Datubāzē!</h4>
-    			Pievienot Jaunu Kategoriju: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-category-add') }}"></a>
+    			<h4 >Categories</h4>
+    			Add new category: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-category-add') }}"></a>
 
 	<table class="table table-striped table-bordered">
     <thead>
         <tr>
         	<td>ID</td>
-            <td>Kategorijas Nosaukums</td>
-            <td>Apraksts</td>
-            <td>Grupas ID</td>
-            <td>Izveidots</td>
-            <td>Izmainīts</td>
-            <td>Iespējas</td>
+            <td>Category name</td>
+            <td>Description</td>
+            <td>Group ID</td>
+            <td>Created</td>
+            <td>Updated</td>
+            <td>Options</td>
 
         </tr>
     </thead>

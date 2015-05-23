@@ -3,24 +3,22 @@
 @section ('content')
 
   <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2" style="border-right: thick double #98bf21;border-left: thick double #98bf21;">
 
   	        <img width="460" height="215" src="upload/3.jpg"> 
 
 			
-			 <h2>Piegāde:</h2>
+			 <h2>Delivery:</h2>
 
        <p>
-       <strong>Rīga/Rīgas rajons:</strong> Piegāde ir 5 euro. Pasūtijumi virs 50 euro piegāde bezmaksas.
+       <strong>Riga/Riga District: </strong> Delivery is 5 euro. Orders above 50 euro delivery is free.
        <br>
-       Piegādes tiks veikta 1-3 darbadienu  laikā.
+       Delivery will be in 1-3 working days.
        <br>
        <br>
-        <strong>Visā Latvijā :</strong>  7-15 ero atkarībā no svara.
+        <strong>In Latvia: </strong> 7-15 Eros, depending on weight.
         <br>
-         Piegādes tiks veikta 1-5 darbadienu  laikā.
-
-
+         Delivery will be in 1-5 working days.
        </p>
 
     </div>

@@ -63,7 +63,7 @@ class GrupasController extends Controller{
 	                          $Image_groups->save();
 						}
 
-                          return \Redirect::to('/admin/groups');
+                          return \Redirect::to('/admin/groups')->with('success', "successfully added!");
      
                 } else {
                         return \Redirect::to('/admin/groups/add')->withErrors($validator);
@@ -102,7 +102,7 @@ class GrupasController extends Controller{
 
 		if ($group->delete())
 		{
-			   return \Redirect::back()->with('success', "Grupa veiksmīgi izdzēsta!");
+			   return \Redirect::back()->with('success', "successfully Deleted");
 		}
 			else
 			{
@@ -161,7 +161,7 @@ class GrupasController extends Controller{
 	                          $Image_groups->grupas_ID = $group->id;
 	                          $Image_groups->save();
 						}
-		return \Redirect::to('/admin/groups')->with('success', "Grupa veiksmīgi izmainīta");
+		return \Redirect::to('/admin/groups')->with('success', "Successfully Updated");
 		}
 
 		else

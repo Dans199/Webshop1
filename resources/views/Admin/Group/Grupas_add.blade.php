@@ -11,7 +11,7 @@
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> Radās problēma ar jūsu ievadi<br><br>
+              <strong>Whoops!</strong> There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -22,26 +22,27 @@
 
     {!! Form::open(array('url'=>'admin/groups/add','method'=>'POST', 'files'=>true)) !!}
         <label for="Group_name">
-            Grupas Nosaukums<br />
+            Group name:<br />
             {!! Form::text('Group_name', null, ['id' => 'Group_name']) !!}
         </label>
         <br />
         <label for="Group_desc">
-            Apraksts<br />
+            Description:<br />
             {!! Form::textarea('Group_desc', null, ['id' => 'Group_desc']) !!}
         </label>
         <br />
 
         <div class="control-group">
           <div class="controls">
-          {!! Form::file('image') !!}
+             Choose image for group:<br />
+          {!! Form::file('image') !!}<br />
 
              </div>
              </div>
 
 
 
-        {!! Form::submit('Pievienot grupu') !!}
+        {!! Form::submit('Add group') !!}
 
     </div>
    </div>

@@ -60,7 +60,7 @@ class SpecialsController extends Controller{
 						}
 
 
-                          return \Redirect::to('/admin/specials')->with('success', "Akcija pievienota!");
+                          return \Redirect::to('/admin/specials')->with('success', "successfully added!");
      
                 } else {
                         return \Redirect::back()->withErrors($validator);
@@ -76,11 +76,11 @@ class SpecialsController extends Controller{
 
 		if ($Specials->delete())
 		{
-			   return \Redirect::back()->with('success', "Akcija veiksmīgi izdzēsta!");
+			   return \Redirect::back()->with('success', "successfully Deleted");
 		}
 			else
 			{
-				   return \Redirect::to('/admin/specials')->with('fail', "An error occured while deleting the Product.");
+				   return \Redirect::to('/admin/specials')->with('fail', "An error occured while deleting.");
 			}
 
 
@@ -141,7 +141,7 @@ class SpecialsController extends Controller{
 
 			 }
 
-                          return \Redirect::to('/admin/specials')->with('success', "Akcija izmainīta!");
+                          return \Redirect::to('/admin/specials')->with('success', "Successfully Updated");
      
                 } else {
                         return \Redirect::back()->withErrors($validator);

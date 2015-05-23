@@ -51,7 +51,7 @@ class UsersController extends Controller{
                         $User->password = $password;
                         $User->save();
 
-                          return \Redirect::to('/admin/Users');
+                          return \Redirect::to('/admin/Users')->with('success', "successfully added!");
      
                 } else {
                         return \Redirect::to('/admin/Users/add')->withErrors($validator);
@@ -72,12 +72,12 @@ class UsersController extends Controller{
 
 		if ($User->delete())
 		{
-			    return \Redirect::to('/admin/Users')->with('success', "Lietotājs veiksmīgi izdzēsta!");
+			    return \Redirect::to('/admin/Users')->with('success', "successfully Deleted");
 		}
 			else
 
 			{
-				   return \Redirect::to('/admin/Users')->with('fail', "An error occured while deleting the Product.");
+				   return \Redirect::to('/admin/Users')->with('fail', "An error occured while deleting .");
 			}
 
 
@@ -114,7 +114,7 @@ class UsersController extends Controller{
 
 
 
-		return \Redirect::to('/admin/Users')->with('success', "Lietotājs veiksmīgi izmainīts");
+		return \Redirect::to('/admin/Users')->with('success', "Successfully Updated");
 		}
 
 		else

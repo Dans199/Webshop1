@@ -2,22 +2,22 @@
 
 @section('content')
   <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2" style="border-right: thick double #98bf21;border-left: thick double #98bf21;">
 
 <!--     <pre>{{print_r($cart)}}</pre> -->
 
-<h3 >Jūsu iepirkuma grozs :</h3>
+<h3 >Your shopping Cart:</h3>
 
 @if($total>0)
 
 <table class="table table-bordered" >
     <thead>
         <tr>
-            <th>Produkts</th>
-            <th>Daudzums</th>
-            <th>Cena</th>
-            <th>Kopējā cena</th>
-            <th>Izņemt</th>
+            <th>Products</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total price</th>
+            <th>Delete</th>
         </tr>
     </thead>
 
@@ -33,7 +33,7 @@
             <td><?php echo $row->qty;?></td>
             <td>€<?php echo $row->price;?></td>
             <td>€<?php echo $row->subtotal;?></td>
-             <td><a type="button" href="{{ URL::route('delete-cart', $row->rowid )}}" class="btn btn-danger btn-xs">Izņemt</a></td>
+             <td><a type="button" href="{{ URL::route('delete-cart', $row->rowid )}}" class="btn btn-danger btn-xs">Delete</a></td>
        </tr>
 
     <?php endforeach;?>
@@ -45,17 +45,17 @@
 
 <div style="float:left;">
 
-  Kopējā iepirkuma summa:<strong>€{{$total}}</strong> 
+ Total order price:<strong>€{{$total}}</strong> 
   </div>
   <br>
    <div  style="display: block; margin-left:auto; margin-right:auto;">
-  <a type="button" href="{{ URL::route('cart-order' )}}" style="width:160px;" class="btn btn-primary btn-lg ">Pasūtīt</a>
+  <a type="button" href="{{ URL::route('cart-order' )}}" style="width:160px;" class="btn btn-primary btn-lg ">Order</a>
 </div>
 </div>
 </div>
 @else
 
- Iepirkuma grozs ir tukš!!!!!!
- Lai ievietotu produktus dodieties uz <a href="{{ URL::route('veikals') }}">Veikala</a> sadaļu.
+Shoping cart is  empty!!!!!!
+To insert products, go to  section - &gt; <a href="{{ URL::route('veikals') }}">Shop!</a> .
 @endif
 @stop

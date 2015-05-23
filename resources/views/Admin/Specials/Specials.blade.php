@@ -12,18 +12,18 @@
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif
 
-    			<h4 >Akcijas Datubāzē!</h4>
-    			Pievienot Jaunu Produktu: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Specials-add') }}"></a>
+    			<h4 >Specials!</h4>
+    			Add new special: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Specials-add') }}"></a>
 
 	<table class="table table-striped table-bordered">
     <thead>
         <tr>
         	<td>ID</td>
-            <td>Nosaukums</td>
-            <td>Akcija Beidzās</td>
-            <td>Izveidots</td>
-            <td>Izmainīts</td>
-            <td>Iespējas</td>
+            <td>Name</td>
+            <td>Ends at</td>
+            <td>Created</td>
+            <td>Updated</td>
+            <td>Options</td>
 
         </tr>
     </thead>

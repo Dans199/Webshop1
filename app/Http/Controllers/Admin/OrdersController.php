@@ -68,7 +68,7 @@ class OrdersController extends Controller{
                         $order->user_id = \Auth::id();
                         $order->save();
                
-				return \Redirect::to('admin/Orders')->with('success', "Pasūtītājums pievienots");
+				return \Redirect::to('admin/Orders')->with('success', "successfully added!");
 				}
 
 				else
@@ -102,7 +102,7 @@ class OrdersController extends Controller{
                         $OrderItem->cena=$price;
                         $OrderItem->save();
                
-				return \Redirect::to("/admin/Orders/$OrderItem->order_id/items")->with('success', "Produkts pievienots");
+				return \Redirect::to("/admin/Orders/$OrderItem->order_id/items")->with('success', "successfully added!");
 				}
 
 				else
@@ -123,7 +123,7 @@ class OrdersController extends Controller{
 
 		if ($Order->delete())
 		{
-			   return \Redirect::back()->with('success', "Pasūtijums  veiksmīgi izdzēst!");
+			   return \Redirect::back()->with('success', "successfully Deleted");
 		}
 			else
 			{
@@ -144,11 +144,11 @@ class OrdersController extends Controller{
 
 		if ($OrderItem->delete())
 		{
-			   return \Redirect::back()->with('success', "Pasūtijuma Preces veiksmīgi izdzēsta!");
+			   return \Redirect::back()->with('success', "successfully Deleted");
 		}
 			else
 			{
-				   return \Redirect::back()->with('fail', "An error occured while deleting the Product.");
+				   return \Redirect::back()->with('fail', "An error occured while deleting .");
 			}
 
 
@@ -161,7 +161,7 @@ class OrdersController extends Controller{
 	{
 		 $Order = Order::find($id);
 
-		return view('Admin/Orders.OrderItem_edit', [
+		return view('Admin/Orders.Order_edit', [
 			'id' => $Order->id
 			, 'name' => $Order->name
 			, 'address' =>$Order->address
@@ -208,7 +208,7 @@ class OrdersController extends Controller{
 		 $order->updated_at=time();
 		 $order->save();
 
-		return \Redirect::to('admin/Orders')->with('success', "Kategorija veiksmīgi izmainīta");
+		return \Redirect::to('admin/Orders')->with('success', "Successfully Updated");
 		}
 		else
 		{
@@ -236,7 +236,7 @@ class OrdersController extends Controller{
 		 $OrderItem->updated_at=time();
 		 $OrderItem->save();
 
-		return \Redirect::to("/admin/Orders/$OrderItem->order_id/items")->with('success', "Kategorija veiksmīgi izmainīta");
+		return \Redirect::to("/admin/Orders/$OrderItem->order_id/items")->with('success', "Successfully Updated");
 		}
 		else
 		{

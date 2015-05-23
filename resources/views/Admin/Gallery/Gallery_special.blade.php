@@ -4,7 +4,7 @@
   <div class="row">
   <div class="col-md-8 col-md-offset-2">
 
-   <h3><strong>Gallery: </strong>Categories</h3>
+   <h3><strong>Gallery: </strong>Specials</h3>
    <br>
    <br>
     @if(Session::has('success'))
@@ -13,17 +13,17 @@
     <div class="alert alert-danger">{{ Session::get('fail') }}</div>
   @endif
 
-   @foreach($categories as $cat)
+   @foreach($specials as $special)
 
    <div class="panel panel-default" style="width:250px;height: 250px;float:left;">
-  <div class="panel-heading" > {{ $cat->name }}</div>
+  <div class="panel-heading" > {{ $special->name }}</div>
   <div class="panel-body col-lg-1 col-centered">
-      @foreach($Image_Category as $Image_Cat)
-      @if($cat->id == $Image_Cat->category_id)
+      @foreach($images_Specials as $Image_special)
+      @if($special->id == $Image_special->special_id)
       <div style="width:200px;">
-       <img src="{{asset($Image_Cat->image)}}" alt="{{$Image_Cat->id}}"  width="230" height="150" > 
+       <img src="{{asset($Image_special->image)}}" alt="{{$Image_special->id}}"  width="230" height="150" > 
        <br>
-         <a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-Categories-delete',$cat->id) }}"></a> <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-gallery-categories-Edit',$cat->id) }}"></a>
+         <a class=" glyphicon glyphicon-remove" href="{{ URL::route('Admin-Specials-delete',$special->id) }}"></a> <a class="glyphicon glyphicon-pencil" href="{{ URL::route('Admin-gallery-special-Edit',$special->id) }}"></a>
      </div>
 
       @endif
@@ -33,7 +33,7 @@
 
 			@endforeach
 
-      {!! $categories->render() !!}
+      {!! $specials->render() !!}
 			
     </div>
    </div>

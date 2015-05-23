@@ -9,14 +9,14 @@
 	@endif
 
   <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2" style="border-right: thick double #98bf21;border-left: thick double #98bf21;">
 
   	
-  	<div style="display: block; margin-left: auto ; margin-right: auto ; vertical-align: middle;">
+  	<div class="col-md-offset-2">
 
-  		  <img width="460" height="215" src="/upload/6.jpg"> 
-  	<p>Paldies par pirkumu, ar jums sazināsies mūsu pasūtījumu speciālists!!</p>
-  	<p>Ja vēlaties turpināt iepirkties dodieties uz sadaļu -> <a href="{{ URL::route('veikals') }}">Veikals</a>.
+  		  <img width="550" height="300" src="/upload/6.jpg"> 
+  	<H4>Thank you for your purchase, you will be contacted by our order specialist!!</h4>
+  	<H4>If you want to continue shopping, go to section - &gt; <a href="{{ URL::route('veikals') }}">Shop!<H4>.
 
   </div>
 

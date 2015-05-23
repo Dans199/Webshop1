@@ -12,19 +12,19 @@
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif
 
-    			<h4 >Lietotāji Datubāzē!</h4>
-    			Pievienot Jaunu Lietotāju: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Users-add') }}"></a>
+    			<h4 >Users:</h4>
+    			Add new user: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Users-add') }}"></a>
 
 	<table class="table table-striped table-bordered">
     <thead>
         <tr>
         	<td>ID</td>
-            <td>Vards</td>
-            <td>E-mails</td>
-            <td>Adminis(1:ir|0:nav)</td>
-            <td>Izveidots</td>
-            <td>Izmainīts</td>
-            <td>Iespējas</td>
+            <td>Name</td>
+            <td>E-mail</td>
+            <td>Admin-is(1:is|0:isn't)</td>
+            <td>Created</td>
+            <td>Updated</td>
+            <td>Options</td>
 
         </tr>
     </thead>

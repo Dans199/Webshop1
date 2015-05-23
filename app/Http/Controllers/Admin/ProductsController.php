@@ -66,7 +66,7 @@ class ProductsController extends Controller{
 						}
 
 
-                          return \Redirect::to('/admin/Products');
+                          return \Redirect::to('/admin/Products')->with('success', "successfully added!");
      
                 } else {
                         return \Redirect::to('/admin/Products/add')->withErrors($validator);
@@ -84,7 +84,7 @@ class ProductsController extends Controller{
 
 		if ($Product->delete())
 		{
-			   return \Redirect::back()->with('success', "Prece veiksmīgi izdzēsta!");
+			   return \Redirect::back()->with('success', "successfully Deleted");
 		}
 			else
 			{
@@ -154,7 +154,7 @@ class ProductsController extends Controller{
 
 
 
-			return \Redirect::to('admin/Products')->with('success', "Kategorija veiksmīgi izmainīta");
+			return \Redirect::to('admin/Products')->with('success', "Successfully Updated");
 		}
 
 		else

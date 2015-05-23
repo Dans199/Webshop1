@@ -12,20 +12,20 @@
 		<div class="alert alert-danger">{{ Session::get('fail') }}</div>
 	@endif
 
-    			<h4 >Pasūtijumi !</h4>
-    			Pievienot manūali pasūtijumu!: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Orders-Add') }}"></a>
+    			<h4 >Orders !</h4>
+    			add order manually: <a class="glyphicon glyphicon-plus" href="{{ URL::route('Admin-Orders-Add') }}"></a>
 
 	<table class="table table-striped table-bordered">
     <thead>
         <tr>
         	<td>ID</td>
-            <td>Pasūtītājs</td>
-            <td>Adrese</td>
-            <td>Pasta indeks</td>
-            <td>Telefons</td>
-            <td>Lietotājs ID</td>
-            <td>Izmainīts</td>
-            <td>Iespējas</td>
+            <td>Client Name</td>
+            <td>Address</td>
+            <td>Postal index</td>
+            <td>Phone number</td>
+            <td>User ID</td>
+            <td>Updated</td>
+            <td>Options</td>
 
         </tr>
     </thead>

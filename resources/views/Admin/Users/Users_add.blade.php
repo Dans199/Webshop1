@@ -7,11 +7,11 @@
 
 
 
-    			<h4 >Jaunas Lietotāja Pievienošana!</h4>
+    			<h4 >Add new User!</h4>
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
-              <strong>Whoops!</strong> Radās problēma ar jūsu ievadi<br><br>
+              <strong>Whoops!</strong>There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
@@ -23,39 +23,39 @@
   {!! Form::open() !!}
 
     <label for="email">
-      Ē-pasts<br />
+      E-mail<br />
       {!! Form::text('email', null, ['id' => 'email']) !!}
     </label>
     <br />
 
     <label for="name">
-      Vārds<br />
+      Name<br />
       {!! Form::text('name', null, ['id' => 'name']) !!}
     </label>
     <br />
 
     <label for="password">
-      Parole<br />
+      Password<br />
       {!! Form::password('password', ['id' => 'password']) !!}
     </label>
     <br />
 
     <label for="password_confirmation">
-      Apstiprināt paroli<br />
+      Confirm Password<br />
       {!! Form::password('password_confirmation', ['id' => 'password_confirmation']) !!}
     </label>
     <br />
 
     <select name="isAdmin">
-                <option value="">Izvelies Admiņa tiesības!</option>
-                <option value="0">Nav Admins</option>
-                <option value="1">Ir Admins</option>
+                <option value="">Set admin priviliges!</option>
+                <option value="0">Is Admins</option>
+                <option value="1">Isn't Admins</option>
     </select> 
     <br />
     <br />
 
 
-    {!! Form::submit('Pievienot Lietotāju') !!}
+    {!! Form::submit('Add user') !!}
 
     </div>
    </div>

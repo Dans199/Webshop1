@@ -26,25 +26,25 @@
 	<![endif]-->
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="font-size: 150%">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle Navigation</span>
 				</button>
-				<a class="navbar-brand">TSG/Admin</a>
+				<p class="navbar-brand" style="font-size: 125%">TSG|Admin</p>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ URL::route('Admin') }}">Admiņa panelis</a></li>
-					<li><a href="{{ URL::route('Admin-Specials') }}">Akcijas</a></li>
-					<li><a href="{{ URL::route('Admin-grupas') }}">Grupas</a></li>
-					<li><a href="{{ URL::route('Admin-category') }}">Kategorijas</a></li>
-					<li><a href="{{ URL::route('Admin-Products') }}">Produkti</a></li>
-					<li><a href="{{ URL::route('Admin-Orders') }}">Pasūtijumi</a></li>
-					<li><a href="{{ URL::route('Admin-gallery') }}">Galerijas</a></li>
-					<li><a href="{{ URL::route('Admin-Users') }}">Lietotāji</a></li>
+					<li><a href="{{ URL::route('Admin') }}">Admin panel</a></li>
+					<li><a href="{{ URL::route('Admin-Specials') }}">Specials</a></li>
+					<li><a href="{{ URL::route('Admin-grupas') }}">Groups</a></li>
+					<li><a href="{{ URL::route('Admin-category') }}">Categories<br/></a></li>
+					<li><a href="{{ URL::route('Admin-Products') }}">Products</a></li>
+					<li><a href="{{ URL::route('Admin-Orders') }}">Orders</a></li>
+					<li><a href="{{ URL::route('Admin-gallery') }}">Galleries</a></li>
+					<li><a href="{{ URL::route('Admin-Users') }}">Users</a></li>
 
 				</ul>
 
@@ -55,7 +55,7 @@
 							
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="/auth/logout">Logout</a></li>
-								<li><a href="{{ URL::route('Main') }}">Mājas Lapa</a></li>
+								<li><a href="{{ URL::route('Main') }}">Home page</a></li>
 						
 							</ul>
 						</li>

@@ -16,17 +16,8 @@ class HelloController extends Controller{
 
    	$CurrentUserCount= user::count();
 
-   	if (!\Auth::guest() && \Auth::user()->isAdmin()){
-
     return View('Admin.Panel')->with('CurrentUserCount',$CurrentUserCount);
 
 	}
-	else
-	{
-		return \Redirect::route('Main');
-
-	}
-
-  }
-
+	
 }

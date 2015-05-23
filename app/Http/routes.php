@@ -15,18 +15,18 @@ Route::get('/', [
     'as' => 'Main', 'uses' => 'WelcomeController@index'
 ]);
 
-Route::get('/veikals', [
+Route::get('/Shop', [
     'as' => 'veikals', 'uses' => 'VeikalsController@index'
 ]);
 
-Route::get('/piegade', [
+Route::get('/Delivery', [
     'as' => 'piegade', 'uses' => 'PiegadeController@index'
 ]);
-Route::get('/serviss', [
+Route::get('/Service', [
     'as' => 'serviss', 'uses' => 'ServissController@index'
 ]);
 
-Route::get('/kontakti', [
+Route::get('/Contacts', [
     'as' => 'kontakti', 'uses' => 'kontaktiController@index'
 ]);
 
@@ -41,7 +41,7 @@ Route::controllers([
 
 
 
-Route::group(array('prefix' => '/veikls'), function()
+Route::group(array('prefix' => '/shop'), function()
 {
 	Route::get('/category/{id}', array('uses' => 'VeikalsController@category', 'as' => 'shop-category'));
 	Route::get('/product/{id}', array('uses' => 'VeikalsController@product', 'as' => 'shop-product'));
@@ -68,7 +68,7 @@ Route::group(['middleware' => 'auth'], function()
 
 });
 
-	Route::group(array('before' => 'admin'), function()
+	Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 	{	
 
 		Route::get('/admin/specials', array('uses' => 'Admin\SpecialsController@showSpecials', 'as' => 'Admin-Specials'));
@@ -148,6 +148,10 @@ Route::group(['middleware' => 'auth'], function()
 		Route::get('/admin/gallery/Products', array('uses' => 'Admin\GalleryController@showproducts', 'as' => 'Admin-gallery-products'));
 		Route::get('/admin/gallery/Products/edit/{id}', array('uses' => 'Admin\GalleryController@productsEdit', 'as' => 'Admin-gallery-products-Edit'));
 		Route::post('/admin/gallery/Products/edit/{id}', array('uses' => 'Admin\GalleryController@postproductsEdit'));
+
+		Route::get('/admin/gallery/Specials', array('uses' => 'Admin\GalleryController@showSpecials', 'as' => 'Admin-gallery-special'));
+		Route::get('/admin/gallery/Specials/edit/{id}', array('uses' => 'Admin\GalleryController@specialsEdit', 'as' => 'Admin-gallery-special-Edit'));
+		Route::post('/admin/gallery/Specials/edit/{id}', array('uses' => 'Admin\GalleryController@postspecialsEdit'));
 
 
 
