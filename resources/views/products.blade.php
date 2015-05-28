@@ -107,7 +107,7 @@ $( document ).ready(function(){
        @foreach($Image_Products as $Image_Product)
       @if($product->id == $Image_Product->product_id)
       <div style="Float:left;">
-       <img src="{{asset($Image_Product->image)}}" alt="{{$Image_Product->id}}" style="width:160px;height:100px;border-width: 2px;margin: 10px;" > 
+       <a href="{{ URL::route('product-info', $product->id) }}"><img src="{{asset($Image_Product->image)}}" alt="{{$Image_Product->id}}" style="width:160px;height:100px;border-width: 2px;margin: 10px;" > </a>
      </div>
       @endif
       @endforeach

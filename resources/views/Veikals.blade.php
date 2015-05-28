@@ -27,7 +27,7 @@
       @foreach($Image_groups as $Image_group)
       @if($group->id == $Image_group->grupas_ID)
       <div>
-       <img src="{{asset($Image_group->image)}}" alt="{{$Image_group->id}}" style="width:200px;height:100px"  > 
+       <a href="{{ URL::route('shop-category', $group->id) }}"><img src="{{asset($Image_group->image)}}" alt="{{$Image_group->id}}" style="width:200px;height:100px"  ></a> 
      </div>
 
       @endif

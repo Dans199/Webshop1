@@ -32,7 +32,7 @@
           @foreach($Image_Category as $Cat_image)
       @if($category->id == $Cat_image->category_id)
       <div>
-        <img src="{{ asset($Cat_image->image) }}" alt="{{$Cat_image->id}}" style="width:200px;height:100px"> 
+        <a href="{{ URL::route('shop-product', $category->id) }}"><img src="{{ asset($Cat_image->image) }}" alt="{{$Cat_image->id}}" style="width:200px;height:100px"></a> 
      </div>
 
      @endif
