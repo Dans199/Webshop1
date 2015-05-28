@@ -37,7 +37,7 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ URL::route('Admin') }}">Admin panel</a></li>
+					<li><a href="{{ URL::route('Admin') }}">Admin Home</a></li>
 					<li><a href="{{ URL::route('Admin-Specials') }}">Specials</a></li>
 					<li><a href="{{ URL::route('Admin-grupas') }}">Groups</a></li>
 					<li><a href="{{ URL::route('Admin-category') }}">Categories<br/></a></li>

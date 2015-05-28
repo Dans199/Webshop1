@@ -16,7 +16,7 @@ class GrupasController extends Controller{
   public function showGroups()
    {
 
-   	$groups = Grupa::latest()->paginate(10);
+   	$groups = Grupa::latest()->paginate(5);
    	return view('Admin/Group.Grupas')->with('groups', $groups);
 
   	}
@@ -34,7 +34,7 @@ class GrupasController extends Controller{
    
 
    		$input = \Input::all();
-		$rules = array('Group_name' => 'required','Group_desc' => 'required', 'image' => 'required|image|mimes:jpeg,jpg,png,bmp,gif,svg');
+		$rules = array('Group_name' => 'required','Group_desc' => 'required|max:255', 'image' => 'required|image|mimes:jpeg,jpg,png,bmp,gif,svg');
 		$file = array('image' => \Input::file('image'));
 
 		 $validator = \Validator::make($input, $rules);

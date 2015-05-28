@@ -1,8 +1,9 @@
 <?php namespace App\Services;
 
-use App\User;
-use Validator;
-use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
+   use App\User;
+   use Validator;
+   use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
+   use Mail;
 
 class Registrar implements RegistrarContract {
 
@@ -34,6 +35,18 @@ class Registrar implements RegistrarContract {
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
 		]);
+
+		 $data['verification_code']  = $user->verification_code;
+
+            Mail::send('emails.welcome', $data, function($message) use ($data)
+            {
+                $message->from('no-reply@site.com', "TSG");
+                $message->subject("Welcome to web shop TSG");
+                $message->to($data['email']);
+            });
+
+
+            return $user;
 	}
 
 }

@@ -7,7 +7,7 @@
 
 
 
-    			<h4 >Jaunas grupas Pievienošana!</h4>
+    			<h4 >Add new Product group!</h4>
 
                 @if (count($errors) > 0)
             <div class="alert alert-danger">
