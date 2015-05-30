@@ -39,11 +39,6 @@
     
 
 
-    </div>
-   </div>
-
-
-
 
 @endsection
 @stop

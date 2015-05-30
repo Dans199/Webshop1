@@ -59,8 +59,7 @@
       <br>
       <h4> Cheap gaming computer can be put together by any of us:)</h4><br>
         <iframe width="460" height="215" src="https://www.youtube.com/embed/rQtUWjgxrd8" frameborder="0" allowfullscreen></iframe>
-      <p>This web page was created by Dans Grīnšteins (dg13030). :) !!!</p>
-
+      
 </div>
 </div>
 </div>

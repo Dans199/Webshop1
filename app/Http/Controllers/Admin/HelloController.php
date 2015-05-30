@@ -8,6 +8,8 @@ use App\Category ;
 use App\Products ;
 use App\Image_groups ;
 use App\User as user;
+use App\Order;
+use App\OrderItem;
 
 class HelloController extends Controller{
 
@@ -15,8 +17,9 @@ class HelloController extends Controller{
    {
 
    	$CurrentUserCount= user::count();
+   	$Last5orders=Order::Latest()->take(5)->get();
 
-    return View('Admin.Panel')->with('CurrentUserCount',$CurrentUserCount);
+    return View('Admin.Panel')->with('CurrentUserCount',$CurrentUserCount)->with('Last5orders',$Last5orders);
 
 	}
 	

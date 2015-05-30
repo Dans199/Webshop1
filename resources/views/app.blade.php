@@ -23,6 +23,8 @@
 	<![endif]-->
 </head>
 <body>
+	<div id="container">
+   <div id="header">
 	<nav class="navbar navbar-default navbar-fixed-top" style="background-color:#98bf21;font-size: 150%">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -68,10 +70,33 @@
 		<br/>	
 <br>
 <br>
+</div>
+
+   <div id="body">
 
 	@yield('content')
+</div>
+<br>
+<br><br>
+<br>
 
-	<!-- Scripts -->
+   <div id="footer">
+
+   	<footer id="footer">
+				<div class="container">
+					<ul class="copyright">
+						<li>&copy; TSG.dev</li>
+						<li> This web page was created by Dans Grīnšteins.</li>
+						<li>Tel:+37126359851</li>
+						<li>Fax: +371 7317029</li>
+						<li> E-mail: info@tsg.lv</li>
+					
+					</ul>
+				</div>
+			</footer>
+
+   </div>
+</div>
 
 </body>
 </html>

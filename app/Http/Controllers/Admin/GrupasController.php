@@ -34,7 +34,7 @@ class GrupasController extends Controller{
    
 
    		$input = \Input::all();
-		$rules = array('Group_name' => 'required','Group_desc' => 'required|max:255', 'image' => 'required|image|mimes:jpeg,jpg,png,bmp,gif,svg');
+		$rules = array('Group_name' => 'required|max:255','Group_desc' => 'required|max:255', 'image' => 'required|image|mimes:jpeg,jpg,png,bmp,gif,svg');
 		$file = array('image' => \Input::file('image'));
 
 		 $validator = \Validator::make($input, $rules);
@@ -133,7 +133,7 @@ class GrupasController extends Controller{
 		$Image_groups = Image_groups::where('grupas_ID',$id)->first();
 
 		 $input = \Input::all();
-		 $rules = array('Group_name' => 'required','Group_desc' => 'required','image' => 'mimes:jpeg,bmp,png');
+		 $rules = array('Group_name' => 'required|max:255' ,'Group_desc' => 'required|max:255','image' => 'mimes:jpeg,bmp,png');
 
 		 $validator = \Validator::make($input, $rules);
 

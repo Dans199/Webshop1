@@ -29,8 +29,8 @@ class ProductsController extends Controller{
    	{
 
    		$input = \Input::all();
-		$rules = array('name' => 'required'
-			,'desc' => 'required'
+		$rules = array('name' => 'required|max:255'
+			,'desc' => 'required|max:255'
 			,'cat' => 'required|min:1'
 			,'price' => 'required|numeric|regex:/^\d*(\.\d{2})?$/'
 			,'image' => 'required|image|mimes:jpeg,jpg,png,bmp,gif,svg'
@@ -118,8 +118,8 @@ class ProductsController extends Controller{
 		 $input = \Input::all();
 		 $Image_Product = Image_Product::where('product_id',$id)->first();
 
-		 $rules = array('name' => 'required'
-			,'desc' => 'required'
+		 $rules = array('name' => 'required|max:255'
+			,'desc' => 'required|max:255'
 			,'cat' => 'required|min:1'
 			,'price' => 'required|numeric|regex:/^\d*(\.\d{2})?$/'
 			,'image' => 'mimes:jpeg,bmp,png'

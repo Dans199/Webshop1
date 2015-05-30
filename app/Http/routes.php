@@ -11,6 +11,17 @@
 |
 */
 
+Route::get('test', function()
+{
+	
+
+Mail::send('emails.welcome', ['key' => 'value'], function($message)
+{
+
+    $message->to('dans.grinsteins@inbox.lv', 'swags')->subject('Welcome!');
+});
+});
+
 Route::get('/', [
     'as' => 'Main', 'uses' => 'WelcomeController@index'
 ]);

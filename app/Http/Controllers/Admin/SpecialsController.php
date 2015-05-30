@@ -28,7 +28,7 @@ class SpecialsController extends Controller{
    	{
 
    		$input = \Input::all();
-		$rules = array('name' => 'required'
+		$rules = array('name' => 'required|max:80'
 			,'end_time' => 'required|date'
 			,'image' => 'required|image|mimes:jpeg,jpg,png,bmp,gif,svg'
 			);

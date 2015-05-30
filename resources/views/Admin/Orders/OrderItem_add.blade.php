@@ -21,6 +21,11 @@ $( document ).ready(function() {
                   {
                       var Products = $('#products').empty();
 
+                         $('<option/>', {
+                              value:"",
+                              text:'Choose Product'
+                          }).appendTo(Products);
+
                      
                       $.each(response.products, function(i, products){
                         console.log(i);
@@ -41,6 +46,12 @@ $( document ).ready(function() {
                   if(response.success)
                   {
                       var Categories = $('#categories').empty();
+
+                            $('<option/>', {
+                              value:"",
+                              text:'Choose Category'
+                          }).appendTo(Categories);
+
                      
                       $.each(response.Category, function(i,Category){
                         console.log(i);
@@ -126,6 +137,7 @@ $( document ).ready(function() {
         {!! Form::submit('Add product') !!}
 
     </div>
+   </div>
    </div>
 
 @endsection

@@ -51,10 +51,10 @@ class OrdersController extends Controller{
 
    		$input = \Input::all();
 		$rules = array(
-			'name' => 'required',
-		 'address' => 'required',
-		 'p_index' => 'required', 
-		 'tel' => 'required|numeric');
+			'name' => 'required|max:255',
+		 'address' => 'required|max:255',
+		 'p_index' => 'required|max:255', 
+		 'tel' => 'required|numeric|digits:8');
 
 		 $validator = \Validator::make($input, $rules);
                
@@ -84,17 +84,22 @@ class OrdersController extends Controller{
 
    		$input = \Input::all();
 		$rules = array(
+
 		'order_id' => 'required',
-		 'products' => 'required',
-		 'quantity' => 'required|numeric');
+		 'Group' => 'required',
+		  'categories' => 'required',
+		   'products' => 'required',
+		 'quantity' => 'required|numeric|min:1');
 
 
-		$price = Products::find($input['products'])->pluck('price');
+	
 
 		 $validator = \Validator::make($input, $rules);
                
                 if ($validator->passes())
                 {
+                		$price = Products::find($input['products'])->pluck('price');
+
                         $OrderItem = new OrderItem();
                         $OrderItem->quantity = $input['quantity'];
                         $OrderItem->product_id = $input['products'];
@@ -218,14 +223,15 @@ class OrdersController extends Controller{
 
 
 	}
-			public function postOrderItemEdit($id)
-		{
+	public function postOrderItemEdit($id)
+	{
 		  $OrderItem = OrderItem::find($id);
 		 $input = \Input::all();
 
-		$rules = array([
-		'quantity' => 'required|numeric',
-		'cena' => 'required|numeric|regex:/^\d*(\.\d{2})?$/']);
+		$rules = array(
+		'quantity' => 'required|numeric|min:1',
+		'cena' => 'required|numeric|regex:/^\d*(\.\d{2})?$/');
+
 		 $validator = \Validator::make($input, $rules);
 
 		if ($validator->passes())

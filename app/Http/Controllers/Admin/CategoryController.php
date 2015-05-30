@@ -30,8 +30,8 @@ class CategoryController extends Controller{
    	{
 
    		$input = \Input::all();
-		$rules = array('name' => 'required',
-			'desc' => 'required',
+		$rules = array('name' => 'required|max:255',
+			'desc' => 'required|max:255',
 			'group' => 'required|min:1',
 			'image' => 'required|image|mimes:jpeg,jpg,png,bmp,gif,svg');
 
@@ -122,7 +122,7 @@ class CategoryController extends Controller{
 		 $Image_Category = Image_Category::where('category_id',$id)->first();
 
 		 $input = \Input::all();
-		 $rules = array('name' => 'required','desc' => 'required','image' => 'image');
+		 $rules = array('name' => 'required|max:255','desc' => 'required|max:255','image' => 'image');
 
 		 $validator = \Validator::make($input, $rules);
 

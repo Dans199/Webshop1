@@ -56,7 +56,7 @@
         {!! Form::submit('Edit!') !!}
 
     </div>
-   </div>
+   </div>   </div>
 
 @endsection
 @stop

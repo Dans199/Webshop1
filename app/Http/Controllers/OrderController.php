@@ -38,9 +38,9 @@ class OrderController extends Controller {
 	{
 		$input = \Input::all();
 		$rules = array('name' => 'required',
-		 'address' => 'required',
-		 'p_index' => 'required', 
-		 'tel' => 'required|numeric');
+		 'address' => 'required|max:255',
+		 'p_index' => 'required|min:6', 
+		 'tel' => 'required|numeric|digits:8');
 
 		 $validator = \Validator::make($input, $rules);
                
