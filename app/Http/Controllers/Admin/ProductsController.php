@@ -76,20 +76,29 @@ class ProductsController extends Controller{
 	public function DeleteProducts($id)
 
    	{			
-   			$Product = Products::find($id);
+   		$Product = Products::find($id);
+   		$Product->orderitem()->delete();
+   	
+   		$Upload=Image_Product::where('product_id', $id)->pluck('image');
+		$file_path_conv=explode("/",$Upload); // converting url path to local path
+		$path=implode("\\",$file_path_conv);
+		$Fullpath= public_path()."\\".$path;
 
-   			$Product->orderitem()->delete();
-   			$Product->imageProduct()->delete();
 
+	    if(\File::delete($Fullpath)) { //deleting file from server
 
-		if ($Product->delete())
-		{
-			   return \Redirect::back()->with('success', "successfully Deleted");
-		}
-			else
+	    $Product->imageProduct()->delete();
+
+			if ($Product->delete())
 			{
-				   return \Redirect::to('/admin/Products')->with('fail', "An error occured while deleting the Product.");
+				   return \Redirect::back()->with('success', "successfully Deleted");
 			}
+
+		}
+		else
+		{
+			return \Redirect::to('/admin/Products')->with('fail', "An error occured while deleting the Product.");
+		}
 
 
   
@@ -139,6 +148,14 @@ class ProductsController extends Controller{
 
 			  if (\Input::hasFile('image'))
              {
+             			$Upload=Image_Product::where('product_id', $id)->pluck('image');
+						$file_path_conv=explode("/",$Upload); // converting url path to local path
+						$path=implode("\\",$file_path_conv);
+						$Fullpath= public_path()."\\".$path;
+
+
+	    				if(\File::delete($Fullpath)) 
+	    				{ //deleting file from server
 						      $destinationPath = 'upload/products'; // upload path
 						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
 						      $fileName ='Product_'.rand(11111,99999).'.'.$extension; // renameing image
@@ -149,6 +166,7 @@ class ProductsController extends Controller{
 	                          $Image_Product->image=$path;
 	                          $Image_Product->product_id=$Product->id;
 	                          $Image_Product->save();
+	                     }
 			 }
 
 

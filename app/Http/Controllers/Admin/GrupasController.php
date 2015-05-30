@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers\Admin;
 
 use Illuminate\Pagination\Paginator;
-
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Grupas as Grupa ;
@@ -11,9 +10,11 @@ use App\Image_Category;
 use App\Image_groups ;
 use App\Image_Product;
 
+
 class GrupasController extends Controller{
 
-  public function showGroups()
+
+  public function showGroups()//-Gets all groups from database and sends the user to group view
    {
 
    	$groups = Grupa::latest()->paginate(5);
@@ -21,14 +22,14 @@ class GrupasController extends Controller{
 
   	}
 
-   public function AddGroup()
+   public function AddGroup()//-  Sends the user to form where user can add new group
    	{
 
    	return view('Admin/Group.Grupas_add');
 
   	}
 
-  	public function postGroup()
+  	public function postGroup()//- Posts the data to database and saves file to server
    	{
 
    
@@ -46,14 +47,12 @@ class GrupasController extends Controller{
                         $group->Group_desc = $input['Group_desc'];
                         $group->save();
 
-                        if (\Input::file('image')->isValid())
+                        if (\Input::file('image')->isValid()) // file upload
                         {
 						      $destinationPath = 'upload/group'; // upload path
 						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
 						      $fileName ='Group_'.rand(11111,99999).'.'.$extension; // renameing image
 						      \Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-						      // sending back with message
-						      \Session::flash('success', 'Upload successfully');
 
 						      $path = "upload/group/".$fileName;
 
@@ -70,7 +69,7 @@ class GrupasController extends Controller{
                 }
 		}
 
-	public function DeleteGroup($id)
+	public function DeleteGroup($id) //deletes the group from database and image file from server
 
    	{
 
@@ -78,12 +77,13 @@ class GrupasController extends Controller{
 	foreach ($group->category as $category)
 	{
 
-	foreach ($category->products as $product){
+		foreach ($category->products as $product){
 
-		$product->orderitem()->delete();
-		$product->imageProduct()->delete();
+			$product->orderitem()->delete();
+			$product->imageProduct()->delete();
+			$product->delete();
 
-	}
+		}
 
     $category->products()->delete();
     $category->imageCategory()->delete();
@@ -92,28 +92,32 @@ class GrupasController extends Controller{
 	}
 
 	$Upload=Image_groups::where('grupas_ID', $id)->pluck('image');
-
-	$path= public_path().$Upload;
-
-	\File::delete($path);
-
-	$group->imagegroups()->delete();
+	$file_path_conv=explode("/",$Upload); // converting url path to local path
+	$path=implode("\\",$file_path_conv);
+	$Fullpath= public_path()."\\".$path;
 
 
-		if ($group->delete())
-		{
-			   return \Redirect::back()->with('success', "successfully Deleted");
-		}
-			else
+	    if(\File::delete($Fullpath)) { //deleting file from server
+	      	
+	  		$group->imagegroups()->delete();
+
+
+			if ($group->delete())
 			{
-				   return \Redirect::to('/admin/groups')->with('fail', "An error occured while deleting the group.");
+				   return \Redirect::back()->with('success', "successfully Deleted");
 			}
+
+	    }
+		else
+		{
+			return \Redirect::to('/admin/groups')->with('fail', "An error occured while deleting the group.");
+		}
 
 
   
     }
 
-    public function getEdit($id)
+    public function getEdit($id)// returns view with input parameters from database to group edit page
 	{
 		 $group = Grupa::find($id);
 		 $Image_groups = Image_groups::where('grupas_ID',$id)->first();
@@ -127,7 +131,7 @@ class GrupasController extends Controller{
 		]);
 	}
 
-	public function postEdit($id)
+	public function postEdit($id) // post the new group data to  database
 	{
 		$group = Grupa::find($id);
 		$Image_groups = Image_groups::where('grupas_ID',$id)->first();
@@ -146,21 +150,30 @@ class GrupasController extends Controller{
 			, 'updated_at' => time()
 		]);
 
-		   if (\Input::hasFile('image'))
-                        {
-						      $destinationPath = 'upload/group'; // upload path
-						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
-						      $fileName ='Group_'.rand(11111,99999).'.'.$extension; // renameing image
-						      \Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-						      // sending back with message
-						      \Session::flash('success', 'Upload successfully');
+		   if (\Input::hasFile('image'))// checks if file is provided
+              {
 
-						      $path = "upload/group/".$fileName;
-						      
-	                          $Image_groups->image =$path;
-	                          $Image_groups->grupas_ID = $group->id;
-	                          $Image_groups->save();
-						}
+                        	$Upload=Image_groups::where('grupas_ID', $id)->pluck('image');
+							$file_path_conv=explode("/",$Upload); // converting url path to local path
+							$path=implode("\\",$file_path_conv);
+							$Fullpath= public_path()."\\".$path;
+
+	    					if(\File::delete($Fullpath))
+	    					 { //deleting old file from server
+
+							      $destinationPath = 'upload/group'; // upload path
+							      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
+							      $fileName ='Group_'.rand(11111,99999).'.'.$extension; // renameing image
+							      \Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+						
+
+							      $path = "upload/group/".$fileName;
+							      
+		                          $Image_groups->image =$path;  
+		                          $Image_groups->grupas_ID = $group->id;
+		                          $Image_groups->save(); //saves the  image  path and the groups id
+	                      	}
+				}
 		return \Redirect::to('/admin/groups')->with('success', "Successfully Updated");
 		}
 
@@ -171,9 +184,4 @@ class GrupasController extends Controller{
 		}
 
 	}
-
-
-
-
-
 }

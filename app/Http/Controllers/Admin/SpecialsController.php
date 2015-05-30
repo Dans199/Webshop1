@@ -71,13 +71,21 @@ class SpecialsController extends Controller{
 
    	{			
    			$Specials = Special::find($id);
-   			$Specials->imageSpecials()->delete();
+
+   			$Upload=images_Specials::where('special_id', $id)->pluck('image');
+			$file_path_conv=explode("/",$Upload); // converting url path to local path
+			$path=implode("\\",$file_path_conv);
+			$Fullpath= public_path()."\\".$path;
 
 
-		if ($Specials->delete())
-		{
-			   return \Redirect::back()->with('success', "successfully Deleted");
-		}
+		    if(\File::delete($Fullpath))
+		    { 
+		    	$Specials->imageSpecials()->delete();
+				if ($Specials->delete())
+				{
+					   return \Redirect::back()->with('success', "successfully Deleted");
+				}
+			}
 			else
 			{
 				   return \Redirect::to('/admin/specials')->with('fail', "An error occured while deleting.");
@@ -125,8 +133,15 @@ class SpecialsController extends Controller{
 			 $Specials->updated_at=time();
 			 $Specials->save();
 
-			  if (\Input::hasFile('image'))
+			 if (\Input::hasFile('image'))
              {
+						    $Upload=images_Specials::where('special_id', $id)->pluck('image');
+							$file_path_conv=explode("/",$Upload); // converting url path to local path
+							$path=implode("\\",$file_path_conv);
+							$Fullpath= public_path()."\\".$path;
+
+						    if(\File::delete($Fullpath))
+						    {
 						     $destinationPath = 'upload/Special'; // upload path
 						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
 						      $fileName ='Special_'.rand(11111,99999).'.'.$extension; // renameing image
@@ -139,13 +154,15 @@ class SpecialsController extends Controller{
    							  $images_Specials->image =$path;
 	                          $images_Specials->save();
 
-			 }
+							 }
+			}
 
-                          return \Redirect::to('/admin/specials')->with('success', "Successfully Updated");
+                return \Redirect::to('/admin/specials')->with('success', "Successfully Updated");
      
                 } else {
                         return \Redirect::back()->withErrors($validator);
-                }
+                
+            }
 
 	}
 

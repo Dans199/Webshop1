@@ -74,26 +74,36 @@ class CategoryController extends Controller{
 	public function DeleteCategory($id)
 
    	{			
-   		$category = Category::find($id);
+	   		$category = Category::find($id);
 
-		foreach ($category->products as $product){
+			foreach ($category->products as $product){
 
-		$product->orderitem()->delete();
-		$product->imageProduct()->delete();
+			$product->orderitem()->delete();
+			$product->imageProduct()->delete();
 
-		}
+			}
 
-    $category->products()->delete();
-	$category->imageCategory()->delete();
+	    	$category->products()->delete();
+
+	    	$Upload=Image_Category::where('category_id', $id)->pluck('image');
+			$file_path_conv=explode("/",$Upload); // converting url path to local path
+			$path=implode("\\",$file_path_conv);
+			$Fullpath= public_path()."\\".$path;
 
 
-		if ($category->delete())
-		{
-			   return \Redirect::back()->with('success', "successfully Deleted");
-		}
+		    if(\File::delete($Fullpath))
+		    { 
+				$category->imageCategory()->delete();
+
+
+				if ($category->delete())
+				{
+					   return \Redirect::back()->with('success', "successfully Deleted");
+				}
+			}
 			else
 			{
-				   return \Redirect::to('/admin/Categories')->with('fail', "An error occured while deleting.");
+				return \Redirect::to('/admin/Categories')->with('fail', "An error occured while deleting.");
 			}
 
 
@@ -138,6 +148,13 @@ class CategoryController extends Controller{
 
 			 if (\Input::hasFile('image'))
              {
+						    $Upload=Image_Category::where('category_id', $id)->pluck('image');
+							$file_path_conv=explode("/",$Upload); // converting url path to local path
+							$path=implode("\\",$file_path_conv);
+							$Fullpath= public_path()."\\".$path;
+
+						    if(\File::delete($Fullpath))
+						    { 
 						      $destinationPath = 'upload/category'; // upload path
 						      $extension = \Input::file('image')->getClientOriginalExtension(); // getting image extension
 						      $fileName ='Category_'.rand(11111,99999).'.'.$extension; // renameing image
@@ -150,11 +167,8 @@ class CategoryController extends Controller{
 	                          $Image_Category->image =$path;
 	                          $Image_Category->category_id=$Category->id;
 	                          $Image_Category->save();
+	                        }
 			 }
-
-
-
-
 
 			return \Redirect::to('/admin/Categories')->with('success', "Successfully Updated");
 		}
