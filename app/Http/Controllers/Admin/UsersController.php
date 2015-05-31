@@ -9,7 +9,15 @@ use App\Order;
 
 class UsersController extends Controller{
 
-  public function showUsers()
+	/*
+	|--------------------------------------------------------------------------
+	| Users Controller
+	|--------------------------------------------------------------------------
+	|
+	|This controller is responsible for all user CRUD funcionality 
+	*/	
+
+  public function showUsers()//shows all users in database
    {
 
    	$User = User::Latest()->paginate(25);
@@ -18,13 +26,13 @@ class UsersController extends Controller{
 
   	}
 
-   public function AddUser()
+   public function AddUser() // gets administration a new user add form
    {
 
    	return view('Admin/Users.Users_add');
    }
 
-  	public function postUser()
+  	public function postUser()// posts the new data to database
    	{
 
    		$input = \Input::all();
@@ -58,7 +66,7 @@ class UsersController extends Controller{
                 }
 		}
 
-	public function DeleteUser($id)
+	public function DeleteUser($id)// deletes the given user
 
    	{			
    			$User = User::find($id);
@@ -84,7 +92,7 @@ class UsersController extends Controller{
   
     }
 
-    public function EditUser($id)
+    public function EditUser($id) //gets edit form for editing user privilages
 	{
 		 $User = User::find($id);
 
@@ -94,7 +102,7 @@ class UsersController extends Controller{
 		])->with('User',$User);
 	}
 
-	public function postEdit($id)
+	public function postEdit($id)// post the edit  form
 	{
 		 $User = User::find($id);
 		 $input = \Input::all();

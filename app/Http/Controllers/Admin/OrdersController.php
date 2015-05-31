@@ -11,7 +11,15 @@ use App\OrderItem;
 
 class OrdersController extends Controller{
 
-  public function showOrders()
+				/*
+	|--------------------------------------------------------------------------
+	| Orders Controller
+	|--------------------------------------------------------------------------
+	|
+	| This controller is responsible for Order and order item CRUD funcionality 
+	*/
+
+  public function showOrders() //shows all orders in database
    {
 
    	$Orders =Order::Latest()->paginate(5);
@@ -20,7 +28,7 @@ class OrdersController extends Controller{
 
   	}
 
-  	public function showOrderItems($id)
+  	public function showOrderItems($id) //shows order ordered items
     {
     $Order =Order::find($id);
     $Products = Products::all();
@@ -30,13 +38,13 @@ class OrdersController extends Controller{
 
   	}
 
-   public function AddOrders()
+   public function AddOrders() //returns form for adding new order
    {
 
    	return view('Admin/Orders.Order_add');
    }
 
-   public function AddOrdersItems($id)
+   public function AddOrdersItems($id)///returns form for adding new order items
    {
 
    	$Group = Grupa::all();
@@ -46,7 +54,7 @@ class OrdersController extends Controller{
 
    }
 
-  	public function postOrders()
+  	public function postOrders() // posts the order data 
    	{
 
    		$input = \Input::all();
@@ -79,7 +87,7 @@ class OrdersController extends Controller{
 	}
 
 
-	public function postOrdersItems()
+	public function postOrdersItems() // posts the ordered item data
    	{
 
    		$input = \Input::all();
@@ -120,7 +128,7 @@ class OrdersController extends Controller{
 
 
 
-		public function DeleteOrders($id)
+		public function DeleteOrders($id) //deletes the order
 
    	{			
    			$Order = Order::find($id);
@@ -142,7 +150,7 @@ class OrdersController extends Controller{
 
 
 
-	public function DeleteOrderItems($id)
+	public function DeleteOrderItems($id) //deletes the order items
 
    	{			
    			$OrderItem = OrderItem::find($id);
@@ -189,7 +197,7 @@ class OrdersController extends Controller{
 	}
 
 
-	public function postEdit($id)
+	public function postEdit($id)// posts the edited order data
 	{
 		  $order = Order::find($id);
 		 $input = \Input::all();

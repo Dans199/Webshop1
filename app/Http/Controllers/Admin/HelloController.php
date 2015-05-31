@@ -13,6 +13,14 @@ use App\OrderItem;
 
 class HelloController extends Controller{
 
+				/*
+	|--------------------------------------------------------------------------
+	| Hello Controller
+	|--------------------------------------------------------------------------
+	|
+	| This controller is responsible for admin panel wecome screen   
+	*/
+
   public function showPanel()
    {
 

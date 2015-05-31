@@ -9,14 +9,12 @@ use App\Image_Product;
 
 class VeikalsController extends Controller {
 
-	/*
+		/*
 	|--------------------------------------------------------------------------
-	| Welcome Controller
+	| Shopp section controller
 	|--------------------------------------------------------------------------
 	|
-	| This controller renders the "marketing page" for the application and
-	| is configured to only allow guests. Like most of the other sample
-	| controllers, you are free to modify or remove it as you desire.
+	| This controller is responsible for all requests in shope section
 	|
 	*/
 
@@ -35,7 +33,7 @@ class VeikalsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index() //returns pruct group view
 	{
 
 
@@ -45,7 +43,7 @@ class VeikalsController extends Controller {
 
 	}
 
-	public function category($id)
+	public function category($id)// returns category view
 	{
 		$group =Grupas::find($id);
 		$categorys = Category::where('grupas_ID', $id)->get();
@@ -61,7 +59,7 @@ class VeikalsController extends Controller {
 		return view('category')->with('categorys', $categorys)->with('Image_Category', $Image_Category)->with('group', $group);
 	}
 
-	public function product($id)
+	public function product($id) // returns product view
 	{
 		$category=Category::find($id);
 		$group_id=$category->grupas_ID;
@@ -77,7 +75,7 @@ class VeikalsController extends Controller {
 		return view('products')->with('products', $products)->with('Image_Products', $Image_Products)->with('category', $category)->with('group', $group);
 	}
 
-	public function product_info($id)
+	public function product_info($id) // returns product description view
 	{
 
 		$product = Product::find($id);

@@ -28,7 +28,7 @@
         <br />
            Choose Category:<br>
          <select name="cat">
-          <option value="">Izvēlieties Kategoriju!</option>
+          <option value="">Choose category!</option>
             @foreach($Categories as $key => $value)
 
               <option value="{{ $value->id }}">{{ $value->name }}</option>

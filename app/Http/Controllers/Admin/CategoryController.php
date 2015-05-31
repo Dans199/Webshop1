@@ -9,7 +9,15 @@ use App\Image_Category;
 
 class CategoryController extends Controller{
 
-  public function showCategory()
+		/*
+	|--------------------------------------------------------------------------
+	| Category Controller
+	|--------------------------------------------------------------------------
+	|
+	| This controller is responsible for categories CRUD funcionality 
+	*/
+
+  public function showCategory()// returns all categories
    {
 
    	$Categorys = Category::Latest()->paginate(5);
@@ -18,7 +26,7 @@ class CategoryController extends Controller{
 
   	}
 
-   public function AddCategory()
+   public function AddCategory() //returns add new category form for categories
    	{
    			$groups = Grupa::all();
 
@@ -26,7 +34,7 @@ class CategoryController extends Controller{
 
   	}
 
-  	public function postCategory()
+  	public function postCategory()// posts the new category to database and saves image files to server
    	{
 
    		$input = \Input::all();
@@ -71,7 +79,7 @@ class CategoryController extends Controller{
                 }
 		}
 
-	public function DeleteCategory($id)
+	public function DeleteCategory($id) //deletes the category and image file on server
 
    	{			
 	   		$category = Category::find($id);
@@ -110,7 +118,7 @@ class CategoryController extends Controller{
   
     }
 
-    public function EditCategory($id)
+    public function EditCategory($id)//returns the  edit view for specifice category
 	{
 		 $Category= Category::find($id);
 		 $groups = Grupa::all();
@@ -126,7 +134,7 @@ class CategoryController extends Controller{
 		])->with('groups',$groups);
 	}
 
-	public function postEdit($id)
+	public function postEdit($id) // posts the edited data to database
 	{
 		 $Category= Category::find($id);
 		 $Image_Category = Image_Category::where('category_id',$id)->first();

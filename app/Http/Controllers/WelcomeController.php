@@ -6,12 +6,10 @@ class WelcomeController extends Controller {
 
 	/*
 	|--------------------------------------------------------------------------
-	| Welcome Controller
+	| Wecome controller
 	|--------------------------------------------------------------------------
 	|
-	| This controller renders the "marketing page" for the application and
-	| is configured to only allow guests. Like most of the other sample
-	| controllers, you are free to modify or remove it as you desire.
+	| This controller is responsible for returning web pages home screen information.
 	|
 	*/
 
@@ -30,7 +28,7 @@ class WelcomeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index()// returns the first page of online shop with specials and information abouth shop
 	{
 		$Specials = Special::Latest()->get();
 		$images_Specials= images_Specials::Latest()->get();

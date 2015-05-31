@@ -13,6 +13,14 @@ use App\Image_Product;
 
 class GrupasController extends Controller{
 
+			/*
+	|--------------------------------------------------------------------------
+	| Grupas Controller
+	|--------------------------------------------------------------------------
+	|
+	| This controller is responsible for group CRUD funcionality 
+	*/
+
 
   public function showGroups()//-Gets all groups from database and sends the user to group view
    {

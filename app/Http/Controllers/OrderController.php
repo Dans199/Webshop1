@@ -8,6 +8,15 @@ use App\OrderItem as OrderItem;
 
 class OrderController extends Controller {
 
+            /*
+    |--------------------------------------------------------------------------
+    | Order controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller is responsible for handling  all orders made by registered users.
+    |
+    */
+
 
         public function __construct()
     {
@@ -15,7 +24,7 @@ class OrderController extends Controller {
     }
 
 
-	public function getOrder()
+	public function getOrder() //returns order input form
 	{
 
 		$cart = \Cart::content();
@@ -25,7 +34,7 @@ class OrderController extends Controller {
 
 	}
 
-    public function getOrderDone()
+    public function getOrderDone() //returns view when order has been compleated
     {
 
         return view('orders.Order_done');
@@ -34,7 +43,7 @@ class OrderController extends Controller {
 
 
 
-	public function postOrder()
+	public function postOrder() //post input data from order form in database
 	{
 		$input = \Input::all();
 		$rules = array('name' => 'required',

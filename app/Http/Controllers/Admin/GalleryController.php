@@ -12,14 +12,22 @@ use App\images_Specials;
 
 class GalleryController extends Controller{
 
-  public function showGalleries()
+			/*
+	|--------------------------------------------------------------------------
+	| Gallery Controller
+	|--------------------------------------------------------------------------
+	|
+	| This controller is responsible for all galleries funcionality (edit,delete) 
+	*/
+
+  public function showGalleries() //Returns view with all galeries
     {
 
    	return view('Admin/Gallery.Gallery');
 
   	}
 
-  public function showgroups()
+  public function showgroups() //Returns all images in group gallery
     {
 	    $grupas=Grupa::latest()->paginate(10);
 	    $groups=Image_groups::latest()->paginate(10);
@@ -27,7 +35,7 @@ class GalleryController extends Controller{
 
   	}
 
-  public function showcategories()
+  public function showcategories() ///Returns all images in category gallery
     {
 	    $categories=Category::latest()->paginate(10);
 	    $Image_Category=Image_Category::latest()->paginate(10);
@@ -35,14 +43,14 @@ class GalleryController extends Controller{
 
   	}
 
-  public function showproducts()
+  public function showproducts()//Returns all images in products gallery
     {
 	    $Products=Products::latest()->paginate(10);
 	    $Image_Product=Image_Product::latest()->paginate(10);
 	   	return view('Admin/Gallery.Gallery_product')->with('Image_Product',$Image_Product)->with('Products',$Products);
   	}
 
-    public function showSpecials()
+    public function showSpecials()///Returns all images in special gallery
     {
 	    $specials=Special::latest()->paginate(10);
 	    $images_Specials=images_Specials::latest()->paginate(10);
@@ -51,7 +59,7 @@ class GalleryController extends Controller{
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  	public function groupEdit($id)
+  	public function groupEdit($id) //edits the group gallery image
     {
 		$group= Grupa::find($id);
 	    $Image_groups=Image_groups::where('grupas_ID', $id)->first();
@@ -59,7 +67,7 @@ class GalleryController extends Controller{
   	}
 
 
-  	public function postgroupEdit($id)
+  	public function postgroupEdit($id) // posts the edited data
     {
 
 	    $Image_groups=Image_groups::where('grupas_ID', $id)->first();
@@ -98,14 +106,14 @@ class GalleryController extends Controller{
             }
 
 
-    public function categoryEdit($id)
+    public function categoryEdit($id) //returns edit form for category images
     {
 		 $category=Category::find($id);
 		 $Image_Category=Image_Category::where('category_id', $id)->first();
 	   	return view('Admin/Gallery.Gallery_category_edit')->with('Image_Category',$Image_Category)->with('category',$category);
   	}
 
-  	  	public function postcategoryEdit($id)
+  	  	public function postcategoryEdit($id)// posts the new image
     {
 
 	     $Image_Category=Image_Category::where('category_id', $id)->first();
@@ -143,7 +151,7 @@ class GalleryController extends Controller{
 
             }
 
-    public function productsEdit($id)
+    public function productsEdit($id) 
     {
 		 $Products=Products::find($id);
 		 $Image_Product=Image_Product::where('product_id', $id)->first();

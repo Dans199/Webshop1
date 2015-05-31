@@ -7,8 +7,17 @@ use App\Products as Product;
 
 class CartController extends Controller {
 
+		/*
+	|--------------------------------------------------------------------------
+	| Cart controller
+	|--------------------------------------------------------------------------
+	|
+	| This controller is responsible for handling  all shoping cart functions.
+	|
+	*/
 
-	public function getCart()
+
+	public function getCart() //gets the  content of the cart
 	{
 
 		$cart = \Cart::content();
@@ -18,7 +27,7 @@ class CartController extends Controller {
 
 	}
 
-	public function addCart($id)
+	public function addCart($id) // adds products cart and returns jsano to jquery fuction
 	{
 		 $name = Product::where('id', $id)->pluck('title');
 		 $price = Product::where('id', $id)->pluck('price');
@@ -30,29 +39,12 @@ class CartController extends Controller {
 
 	}
 
-	public function deleteCart($rowId)
+	public function deleteCart($rowId) // delete an item from cart
 	{
 		\Cart::remove($rowId);
 		return \Redirect::route('cart');
 
 	}
-
-	public function Addqty($rowId)
-	{
-
-		Cart::update($rowId, array('$qty' =>'+1' ));
-		return \Redirect::route('cart');
-
-	}
-
-	public function Lowerqty($rowId)
-	{
-
-		Cart::update($rowId, array('$qty' => '-1'));
-		return \Redirect::route('cart');
-
-	}
-
 
 
 }

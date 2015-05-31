@@ -9,7 +9,16 @@ use App\Image_Product;
 
 class ProductsController extends Controller{
 
-  public function showProducts()
+
+	/*
+	|--------------------------------------------------------------------------
+	| Products Controller 
+	|--------------------------------------------------------------------------
+	|
+	|This controller is responsible for products CRUD funcionality 
+	*/
+
+  public function showProducts() // Returns all products from database.
    {
 
    	$Products = Products::Latest()->paginate(5);
@@ -18,14 +27,14 @@ class ProductsController extends Controller{
 
   	}
 
-   public function AddProducts()
+   public function AddProducts() // Returns product add new product  form view.
    {
 
-   	$Categories = Category::all();
-   	return view('Admin/Products.Products_add')->with('Categories', $Categories);
+	   	$Categories = Category::all();
+	   	return view('Admin/Products.Products_add')->with('Categories', $Categories);
    }
 
-  	public function postProducts()
+  	public function postProducts() // Posts product add form  input data and validates it.
    	{
 
    		$input = \Input::all();
@@ -73,7 +82,7 @@ class ProductsController extends Controller{
                 }
 		}
 
-	public function DeleteProducts($id)
+	public function DeleteProducts($id) // Deletes product from database and image from server.
 
    	{			
    		$Product = Products::find($id);
@@ -104,7 +113,7 @@ class ProductsController extends Controller{
   
     }
 
-    public function EditProducts($id)
+    public function EditProducts($id) //Returns edit view with input data from database
 	{
 		 $Product = Products::find($id);
 			$Categories = Category::all();
@@ -121,7 +130,7 @@ class ProductsController extends Controller{
 		])->with('Categories',$Categories);
 	}
 
-	public function postEdit($id)
+	public function postEdit($id) // posts the data to databes and changes the image file on server
 	{
 		 $Product = Products::find($id);
 		 $input = \Input::all();

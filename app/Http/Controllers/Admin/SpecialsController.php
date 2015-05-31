@@ -10,7 +10,15 @@ use DB;
 
 class SpecialsController extends Controller{
 
-  public function showSpecials()
+	/*
+	|--------------------------------------------------------------------------
+	| Specials Controller
+	|--------------------------------------------------------------------------
+	|
+	|This controller is responsible for all specials CRUD funcionality 
+	*/	
+
+  public function showSpecials() // gets the special list from database
    {
 
    	$Specials = Special::Latest()->paginate(5);
@@ -19,12 +27,12 @@ class SpecialsController extends Controller{
 
   	}
 
-   public function AddSpecials()
+   public function AddSpecials() //returns form for adding new special
    {
    	return view('Admin/Specials.Specials_add');
    }
 
-  	public function postSpecials()
+  	public function postSpecials() //post the data to databes and server
    	{
 
    		$input = \Input::all();
@@ -67,7 +75,7 @@ class SpecialsController extends Controller{
                 }
 		}
 
-	public function DeleteSpecials($id)
+	public function DeleteSpecials($id) //deletes the special and image
 
    	{			
    			$Specials = Special::find($id);
@@ -95,7 +103,7 @@ class SpecialsController extends Controller{
   
     }
 
-    public function EditSpecials($id)
+    public function EditSpecials($id) //edits the special
 	{
 		$Specials = Special::find($id);
 		$images_Specials = images_Specials::where('special_id',$id)->first();
@@ -111,7 +119,7 @@ class SpecialsController extends Controller{
 		])->with('Specials',$Specials);
 	}
 
-	public function postEditSpecials($id)
+	public function postEditSpecials($id) // posts the special to database
 	{
 	    $Specials = Special::find($id);
 		$images_Specials = images_Specials::where('special_id',$id)->first();
